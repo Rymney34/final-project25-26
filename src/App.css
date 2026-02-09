@@ -1,42 +1,89 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.App {
+  /* text-align: center; */
+  font-family: "Bebas Neue", sans-serif;
+
+}
+
+html {
+  margin: 0px;
+  background: #0F172B;;
+
+
+}
+
+body {
+  margin: 0px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal {
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 12px;
+  width: 350px;
+  max-width: 90%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
   text-align: center;
+  animation: slideDown 0.35s ease-out;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.modal h3 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #333;
 }
 
-@keyframes logo-spin {
+.modal p {
+  margin: 12px 0 24px;
+  color: #555;
+  font-size: 16px;
+}
+
+.modal button {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.modal button:hover {
+  background: #43a047;
+}
+
+@keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
