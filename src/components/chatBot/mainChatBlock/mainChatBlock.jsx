@@ -1,7 +1,8 @@
-import "./mainChatBlock.css";
+import { useEffect, useState, useRef } from 'react';
 import Button from "../../Tools/button/button";
-import { Component, useEffect, useState } from 'react';
-import Spinner from "../../spinner/Spinner";
+
+
+import "./mainChatBlock.css";
 
 
 // Main Chatbot funciton 
@@ -10,9 +11,11 @@ const mainChatBot = () =>{
     const [inputValue, setInputValue] = useState("");
     const [inputData ,setUserData] = useState([]);
     const [botValue, setBotValue] = useState("");
+    const [showTitle, setShowTitle] = useState(true);
     const [botResponse, setBotResponse] = useState([])
+    const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
-    
+    const chatEndRef = useRef(null);
     // const API = import.meta.env.VITE_API_URL;;
 
     // console.log(API)
@@ -24,11 +27,12 @@ const mainChatBot = () =>{
 
     // }, []);
 
-
+   
     
-    useEffect(() =>{
-        
-    })
+    useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, [messages]);
+
         const handleSubmit = async () => {
 
             const userPrompt = inputValue;
@@ -51,7 +55,13 @@ const mainChatBot = () =>{
                 const botMessage = data.data;
                 console.log(botMessage)
                
-                setBotResponse(prevRes => [...prevRes, botMessage])
+                const userMsg = { text: userPrompt, sender: 'user' };
+                setMessages(prev => [...prev, userMsg]);
+
+                // Simulate/Fetch Bot Response
+                const botMsg = { text: botMessage, sender: 'bot' };
+                setMessages(prev => [...prev, botMsg]);
+                // setBotResponse(prevRes => [...prevRes, botMessage])
                
             } catch (error) {
                 console.error('Error:', error);
@@ -73,8 +83,11 @@ const mainChatBot = () =>{
         console.log(botValue)
         if (inputValue.trim() !== "") {
             handleSubmit()
+            setShowTitle(false)
         }
     };
+
+   
 
    
 
@@ -82,38 +95,55 @@ const mainChatBot = () =>{
     return(
         <div className="chatBotWrapper">
             <div className="chatBotBlock">
+                <div className='titleWrapperChat'>
+                    {showTitle ? <div class="titleContainerAnimation">
+                        <p class="titleText" >Ask me anything!</p>
+                    </div>
+                        : <></>}
+                </div>
+                
+                    
                     <div className="mainChatBlock">
                    
                     
-                    {inputData.map((message, index) => (
-                        <div key={`user-${index}`} className="user-message">{message}</div>
-                    ))}
-                    {botResponse.map((response, index) => (
-                        <div className="botResWrapper">
-                            <div key={`bot-${index}`} className="bot-message">{response}</div>
-                        </div>
-                       
-                    ))}
-
-                   
-
-                    
+                        {/* {inputData.map((message, index) => (
+                            <div key={`user-${index}`} className="user-message">{message}</div>
+                            
+                        ))}
+                        {botResponse.map((response, index) => (
+                            <div className="botResWrapper">
+                                <div key={`bot-${index}`} className="bot-message">{response}</div>
+                            </div>
                         
-                        
+                        ))} */}
+                        {messages.map((msg, index) => (
+                            <div key={index} className={`message-wrapper ${msg.sender}`}>
+                                <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
+                                    {msg.text}
+                                </div>
+                            </div>
+                        ))}
+                        <div ref={chatEndRef} />
+
                     </div>
-
-
+                    
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSend
+                }}>
                     <div className="inputSearchDiv">
                         <input type="text" 
                         className="promptInput" 
-                        id="prompt"  
+                        id="prompt"
+                        
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Type a prompt..."
                         />
                     <Button type="submit" onClick={handleSend} text="Send" style={{ width: 113, height: 53, backgroundColor: "#82181A", borderRadius: 25}}  />
                     </div>
-                </div>
+                </form> 
+            </div>
         </div>
     )
 }

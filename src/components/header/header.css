@@ -1,0 +1,89 @@
+.headerWrapper{
+    height: 65px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: 10;
+    position: fixed;
+   
+    border-bottom: 2px solid rgba(19, 19, 19, 0.08);
+    backdrop-filter: blur(12px);
+}
+
+.navDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 63vw;
+    height: 100%;
+}
+.logoClass{
+    width: 100%;
+    height: 100%;
+}
+
+.logoBlock{
+    width: 240px;
+    height: 60px;
+}
+
+
+
+.menuTag{
+    color:black
+}
+
+.navMenu{
+    display: flex;
+    align-items: center;
+
+    width: 100px;
+    color: #0F172B;
+    font-size: 18px;
+    font-weight: bold;
+}
+nav{
+    padding: 15px;
+    display: flex;
+   
+
+}
+
+.ham-menu{
+    height: 50px;
+    width: 50px;
+    margin-left: auto;
+    position: relative;
+}
+
+.ham-menu span{
+    height: 5px;
+    width: 100%;
+    background-color: #0F172B;
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%, -50%);
+    transition: .3s ease;
+}
+
+.ham-menu span:nth-child(1){
+    top: 25%;
+}
+
+.ham-menu span:nth-child(3){
+    top: 75%;
+}
+
+.ham-menu.active span:nth-child(1){
+    top:50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+.ham-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.ham-menu.active span:nth-child(3){
+    top:50%;
+    transform: translate(-50%, 50%) rotate(-45deg);
+}

@@ -1,0 +1,21 @@
+.offScreenMenu{
+    background-color: blue;
+    height: 100vh;
+    width: 55%;
+    max-width: 450px;
+    position: fixed;
+    top: 0;
+    right: -450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+    transition: .3s ease;
+}
+
+.offScreenMenu.active{
+    right: 0;
+    
+}

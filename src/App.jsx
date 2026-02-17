@@ -3,6 +3,7 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-d
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import MainChatBot from './components/chatBot/mainChatBlock/mainChatBlock'
+import WebApp from './webApp.jsx'
 import './App.css'
 
 function App() {
@@ -13,15 +14,18 @@ function App() {
       <Router>
         <div>
           <Routes>
+            <Route path="/" element={<WebApp />}>
 
-            <Route
+              <Route
 
-              path="/chatBot"
-              element={<MainChatBot />}
-            />
+                path="/chatBot"
+                element={<MainChatBot />}
+              />
 
-            <Route/>
+            </Route>
+            
           </Routes>  
+
         </div>
       </Router>
 

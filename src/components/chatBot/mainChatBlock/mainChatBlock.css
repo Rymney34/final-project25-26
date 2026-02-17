@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .chatBotBlock{
@@ -14,7 +14,41 @@
     flex-direction: column;
     background-color: white;
     width: 80%;
-    height: 100%;
+    min-height: 100vh;
+   
+}
+
+.titleWrapperChat{
+    height: 100px;
+    margin-top: 50px;
+}
+
+.titleContainerAnimation{
+    display: inline-block;
+
+}
+.titleText{
+    color: #000000;
+    font-size: 3em;
+    letter-spacing: 10px;
+    font-family: monospace;
+    border-right: 5px solid;
+    margin: 20px 0 5px 0;
+    
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: 
+        typing 2s steps(16),
+        cursor .4s step-end infinite alternate
+}
+
+@keyframes cursor {
+    50% {border-color: transparent}
+}
+
+@keyframes typing {
+    from {width: 0;}
 }
 
 .mainChatBlock {
@@ -22,18 +56,28 @@
     flex-direction: column;
     align-items: flex-end;
     width: 80%;
-    height: 85%;
+    min-height: 60vh;
+    margin: 0px 0 10px 0;
+    
 }
 
 .user-message {
-    max-width: 50%;
+    
+    width: fit-content;
+    
     text-align: right;
     word-wrap: break-word;
     padding: 20px;
     background-color: #f0f0f0;
     border-radius: 25px 5px 25px 25px;
     margin-bottom: 10px;
-    color: black
+    color: black;
+}
+.message-wrapper.user{
+    max-width: 50%;
+    
+    
+
 }
 
 .botResWrapper{
@@ -53,13 +97,12 @@
     margin-bottom: 5px;
 }
 
-
-
 .inputSearchDiv{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:14px
+    gap:14px;
+   
 }
 
 .promptInput{
@@ -68,10 +111,12 @@
     font-size: 17px;
     height: 50px;
     width: 670px;
+    border: 0px;
     background-color: rgba(160, 160, 160, 0.21);
     border-radius: 25px;
     box-shadow: inset #000000;
     box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+    margin: 5px 0 10px 0;
 }
 
 
