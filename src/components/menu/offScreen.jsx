@@ -4,8 +4,11 @@ const offScreenMenu = ({isOpen}) =>{
         <div className={`offScreenMenu ${isOpen ? "active" : ""}`}>
             <ul>
                 <li>Home</li>
+                <li>All Museums</li>
                 <li>Library</li>
-                <li>Chatbot</li>
+                <li>AI Chatbot</li>
+                <li>Profile Settings</li>
+                <li>Recomendaitons</li>
                 <li>About</li>
             </ul>
         

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import logo from '../../../resources/img/logo.png'
-import OffScreenMenu from '../../menu/offScreen'
+import OffScreenMenu from '../menu/offScreen'
 import './header.css'
 
 function Header() {
