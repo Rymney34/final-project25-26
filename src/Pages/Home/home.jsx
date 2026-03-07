@@ -20,9 +20,48 @@ const Home = () => {
     // const chatEndRef = useRef(null);
 
     const images =[
-        sliderTest,
-        sliderTest,
-        sliderTest,
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/cardiffNM.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/Amgueddfa%27r_Lleng_Rhufeinig.jpeg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/snowd1.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/aberg.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/cardiffMuseum.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/another.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/castle.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/coal.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/maritime.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/meetyrCastle.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/prembokeDock.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/regmintalMuseum.png",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/saveimage.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/swans.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/tenby.jpg",
+        "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/tf.jpg",
+    ]
+
+    const section = [
+        
+            {
+                title: "Museums in Wales",
+                image: "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/Amgueddfa%27r_Lleng_Rhufeinig.jpeg",
+                paragraphs:[
+                    "Wales is home to a world-class network of museums that celebrate everything from fine art to the Industrial Revolution. Most notably, the seven national museums operate under Amgueddfa Cymru (Museum Wales) and offer free entry.",
+                ],
+                linkText: "nothing"
+               
+            },
+            {
+                imagePosition:"left",
+                title: "Wales: Land of Myth, Song, and Industry",
+                image:  "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/snowd1.png",
+                paragraphs: [
+                    "Wales has many museums that show off its long history of Myth, Song, and Industry. You can visit the National Museum in Cardiff to see ancient treasures or go deep underground at Big Pit to see how coal miners used to work. These places keep the stories of the Welsh people alive for everyone to see today."
+                ],
+                linkText: "nothing"
+               
+
+            }
+       
+        
     ]
 
     return(
@@ -54,7 +93,7 @@ const Home = () => {
             </div>
             <div className="aboutWalesMuseumsWrapper">
                 <div className="aboutWalesContent">
-
+                    <SplitVisualSection sections={section}/>
                 </div>
             </div>
         </div>

@@ -21,11 +21,7 @@ const SplitVisualSection = ({ sections = [],styles,  }) => {
                 <p key={i}>{text}</p>
               ))}
 
-              {section.linkText && (
-                <a href={"/ContactUs"} className="split-link">
-                  {section.linkText}
-                </a>
-              )}
+              
             </div>
 
             <div
@@ -34,7 +30,7 @@ const SplitVisualSection = ({ sections = [],styles,  }) => {
               }`}
             >
               
-              <img  className="imageSection" style={styles} src={section.image} alt={section.title} />
+              <img className="imageSection" style={styles} src={section.image} alt={section.title} />
             </div>
           </div>
         );

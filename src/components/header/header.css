@@ -29,17 +29,22 @@
 
 
 .menuTag{
-    color:black
+    color:black;
+    font-weight: bold;
+    
 }
 
 .navMenu{
     display: flex;
     align-items: center;
-
+    
     width: 100px;
     color: #0F172B;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
+    position: relative;
+        /* or fixed */
+    z-index: 9999;
 }
 nav{
     padding: 15px;
@@ -84,6 +89,6 @@ nav{
 }
 
 .ham-menu.active span:nth-child(3){
-    top:50%;
+    top:42%;
     transform: translate(-50%, 50%) rotate(-45deg);
 }

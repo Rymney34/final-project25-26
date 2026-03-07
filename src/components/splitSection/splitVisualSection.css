@@ -1,6 +1,7 @@
 .split-section {
   width: 100%;
-  padding: 6rem 4rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   display: flex;
   flex-direction: column;
   gap: 8rem;
@@ -8,6 +9,7 @@
 }
 
 .split-row {
+  
   display: flex;
   align-items: center;
   gap: 4rem;

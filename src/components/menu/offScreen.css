@@ -1,21 +1,70 @@
 .offScreenMenu{
-    background-color: blue;
+    
     height: 100vh;
-    width: 55%;
-    max-width: 450px;
+    max-width: 1650px;
     position: fixed;
     top: 0;
-    right: -450px;
+    right: -1450px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 3rem;
+    font-weight:600;
+    transition: .3s ease;
+    
+}
+
+.offScreenMenu.active{
+    right: 0;
+    
+}
+
+.menuList{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 3rem;
+    height: 100vh;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    align-items: start;
+    width: 45vw;
+    max-width: 1050px;
+    right: -450px;
     transition: .3s ease;
+    
 }
 
-.offScreenMenu.active{
-    right: 0;
+.menuList ul{
+    margin-left: 50px;
+    list-style: none;
+    align-items:start;
+    text-align: start;
+
+}
+
+.menuList ul li:hover {
+    cursor: pointer;
+    color: var(--red-color);
+}
+
+
+.videoDiv {
+    width: 60vw;
+    height: 103vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+.videoDiv video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 30% 70%;
     
 }
