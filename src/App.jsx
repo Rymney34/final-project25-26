@@ -3,8 +3,11 @@ import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-d
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import MainChatBot from './components/chatBot/mainChatBlock/mainChatBlock'
+import libraryHub from './Pages/libraryHub/libraryHub.jsx';
+import allEvents from './Pages/events/allEvents.jsx';
 import WebApp from './webApp.jsx'
 import Home from './Pages/Home/home.jsx';
+import About from './Pages/about/about.jsx';
 import './App.css'
 
 function App() {
@@ -27,7 +30,23 @@ function App() {
                 path="/chatBot"
                 element={<MainChatBot />}
               />
-           
+
+              <Route
+
+                path="/events"
+                element={<allEvents />}
+              />
+              <Route
+
+                path="/libraryHub"
+                element={<libraryHub/>}
+              />
+
+              <Route
+
+                path="/about"
+                element={<About/>}
+              />
 
             </Route>
             

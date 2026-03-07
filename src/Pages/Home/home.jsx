@@ -7,6 +7,8 @@ import search from '../../../resources/img/search.png'
 import SplitVisualSection from "../../components/splitSection/splitVisualSection";
 import FullScreenSlider from "../../components/fullScreenSlider/fullScreenSlider";
 import QuickInfoItem from "../../components/quickInfoItem/quickInfoItem";
+import Spinner from "../../components/spinner/Spinner"
+import { useNavigate} from "react-router-dom";
 
 const Home = () => {
 
@@ -41,6 +43,7 @@ const Home = () => {
     const section = [
         
             {
+                
                 title: "Museums in Wales",
                 image: "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/Amgueddfa%27r_Lleng_Rhufeinig.jpeg",
                 paragraphs:[
@@ -64,10 +67,21 @@ const Home = () => {
         
     ]
 
+  
+
+    const navigate = useNavigate();
+
     return(
         <div className="homeWrapper">
             <div className="sliderWrapper">
-                <FullScreenSlider images={images}/>
+                {images.length > 0 ? (
+                    <FullScreenSlider images={images} />
+                ) : (
+                    <div style={{ padding: "0 150 0 0" }}> 
+                            <Spinner  />
+                    </div>
+                  
+                )}
             </div>
             <div className="aiBlockWrapper">
                 <h1>Explore Welsh Culture With AI</h1>
@@ -88,12 +102,20 @@ const Home = () => {
                 <div className="discoverItemWrapper">
                     <QuickInfoItem img={location} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!"  />
                     <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Event" />
-                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" />
+                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => {navigate("/about")}}/>
                 </div>
             </div>
             <div className="aboutWalesMuseumsWrapper">
                 <div className="aboutWalesContent">
-                    <SplitVisualSection sections={section}/>
+                    {/* {section.image 0 ? (
+                        <SplitVisualSection sections={section} />
+                    ) : (
+                        <div style={{ padding: "0 150 0 0" }}>
+                            <Spinner />
+                        </div>
+
+                    )} */}
+                    <SplitVisualSection sections={section} />
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ function quickInfoItem(props) {
                 <img src={props.img} alt={props.title}/>
                 <h4>{props.title}</h4>
                 <p>{props.text}</p>
-                <Button text={props.btnText} style={{backgroundColor: "white", color: 'black'}}/>
+                <Button text={props.btnText} onClick={props.onClick} style={{backgroundColor: "white", color: 'black'}}/>
             </div>
         </div>
     );

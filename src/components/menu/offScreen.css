@@ -45,6 +45,15 @@
     text-align: start;
 
 }
+.menuList ul a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.menuList ul a.activeLink{
+    color: rgb(116, 18, 18);
+    font-weight: bold;
+}
 
 .menuList ul li:hover {
     cursor: pointer;

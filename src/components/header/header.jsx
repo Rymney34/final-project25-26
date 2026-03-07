@@ -18,11 +18,13 @@ function Header() {
                 
                     <div className='navDiv'>
                         <div className='logoBlock'>
-                            <img className="logoClass" alt='logo' src={logo}/>
+                            <a href="/home" className={({ isActive }) => isActive ? "activeLink" : ""}>
+                                <img tabindex="0" className="logoClass" alt='logo' src={logo} />
+                            </a>
                         </div>
                         <div className='navBlocks'>
-                            <div className='navMenu'>
-                                <div className="menuTag"> Menu</div>
+                            <div tabindex="0" className='navMenu'>
+                                <div className="menuTag" > Menu</div>
                                 <nav>
                                     <div className={`ham-menu ${isOpen ? "active" : ""}`} onClick={
                                         toggleMenu
@@ -35,7 +37,7 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                    <OffScreenMenu isOpen={isOpen} />
+                    <OffScreenMenu isOpen={isOpen} closeMenu={()=> setIsOpen(false)} />
             </div>
             
         </header >

@@ -1,0 +1,32 @@
+.eventDiv{
+    width: 80%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+.eventDiv:hover {
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: rgb(rgba(255, 255, 255, 0.416));
+    
+}
+
+.eventContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.eventTitle{
+    margin-bottom: 15px;
+}
+
+.eventInfo{
+    list-style: none;
+}
+.eventImage{
+    width: 550px;
+    height: 300px;
+}

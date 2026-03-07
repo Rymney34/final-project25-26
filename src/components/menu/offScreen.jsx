@@ -1,5 +1,6 @@
+import { NavLink } from 'react-router-dom'
 import './offScreen.css'
-const offScreenMenu = ({isOpen}) =>{
+const offScreenMenu = ({isOpen, closeMenu}) =>{
     return(
         <div className={`offScreenMenu ${isOpen ? "active" : ""}`}>
             <div className='videoDiv'>
@@ -9,13 +10,13 @@ const offScreenMenu = ({isOpen}) =>{
             </div>
             <div className='menuList'>
                 <ul>
-                    <li>Home</li>
-                    <li>All Museums</li>
-                    <li>Library</li>
-                    <li>AI Chatbot</li>
-                    <li>Profile Settings</li>
-                    <li>Recomendaitons</li>
-                    <li>About</li>
+                    <li><NavLink to="/home" className={({isActive}) => isActive ? "activeLink" : ""} onClick={closeMenu}>Home</NavLink></li>
+                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>All Museums</NavLink></li>
+                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Library</NavLink></li>
+                    <li><NavLink to="/chatBot" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>AI Chatbot</NavLink></li>
+                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Profile Settings</NavLink></li>
+                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Recomendaitons</NavLink></li>
+                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""} onClick={closeMenu}>About & FAQs</NavLink></li>
                 </ul>
             </div>
             

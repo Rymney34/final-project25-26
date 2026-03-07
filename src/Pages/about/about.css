@@ -1,0 +1,58 @@
+.aboutContentDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--red-color);
+    padding:  20px 0px 60px 0px;
+}
+.aboutContentInfo{
+    width: 70vw;
+    font-size: 18px;
+    text-align: justify;
+    align-items: center;
+    text-align: center;
+}
+
+.aboutContentTitle{
+    margin:0px;
+    font-weight: bold;
+    font-size: 24px;
+    
+}
+
+.aboutAITitle{
+    font-weight: bold;
+}
+
+.exploreWithAIDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+   
+}
+.AIDivContent{
+    display: flex;
+    gap: 20px;
+}
+
+.leftAiDiv{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.leftAiDiv p{
+    text-align: justify;
+    width: 80%;
+    margin: 40px;
+}
+
+.rightAIDiv{
+    border: 1px solid white;
+    width: 40vw;
+}

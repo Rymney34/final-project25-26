@@ -1,0 +1,38 @@
+.libraryItem{
+    width: 80%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    height: 350px;
+}
+
+.libraryItem:hover{
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: rgb(rgba(255, 255, 255, 0.416));
+}
+
+.libraryImage{
+    width: 550px;
+    height: 300px;
+}
+
+.itemContent{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+    
+}
+
+.itemContent{
+
+}
+
+.itemTitle{
+    margin-bottom: 15px;
+}
+
+.paragraphDiv{
+
+}
