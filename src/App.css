@@ -93,3 +93,7 @@ body {
   --blue-color: #0F172B;
   
 }
+
+.error{
+  color: red;
+}
