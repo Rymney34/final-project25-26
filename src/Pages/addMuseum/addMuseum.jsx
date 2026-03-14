@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext, FieldArray } from 'formik';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from "react-router-dom";
+import Button from '../../components/Tools/button/button';
 import './addMuseum.css'
 // import withRouter from '../navigate/navigate';
 import { FileUploader } from "react-drag-drop-files";
@@ -11,13 +12,10 @@ import * as Yup from 'yup';
 // import Header from '../header/header';
 
 
+const API = import.meta.env.VITE_API_URL;;
 
 const addMuseum = () => {
-
-   
     const navigate = useNavigate();
-
-    
     const [file, setFile] = useState(null);
     const [url, setUrl] = useState(null);
     const [success, setSuccess] = useState(false);
@@ -32,16 +30,17 @@ const addMuseum = () => {
 
         try {
             const formdata = new FormData();
-            formdata.append("museumImage", uploadedFile);
+            formdata.append("firstPageImage", uploadedFile);
 
-            const res = await fetch("/api/upload/img", {
+            const res = await fetch(`${API}/api/upload/img`, {
                 method: "POST",
                 body: formdata
             });
 
             const data = await res.json();
+            //console.log(data)
             setUrl(data.url);
-            setFieldValue("museumImage", data.url);
+            setFieldValue("firstPageImage", data.url);
         } catch (err) {
             console.warn("Upload failed:", err);
         }
@@ -74,27 +73,29 @@ const addMuseum = () => {
 
     const handleSlideImageUpload = async (imageFile, index, setFieldValue) => {
         
-        
+        console.log("gaz")
         try {
             const formdata = new FormData();
             formdata.append("slideImage", imageFile);
 
-            const res = await fetch("/api/upload/img", {
+            const res = await fetch(`${API}/api/upload/img`, {
                 method: "POST",
                 body: formdata
             });
 
             const data = await res.json();
+            console.log(data)
             // setUrl(data.url);
-            setFieldValue(`slider.${index}.urlImage`, data.url);
+            setFieldValue(`slider.${index}.slideImage`, data.url);
         } catch (err) {
             console.warn("Upload failed:", err);
         }
     };
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        console.log("gaz")
         try {
-            const res = await axios.post("/api/craeteMuseum", values);
+            const res = await axios.post(`${API}/api/createMuseum`, values);
             console.log("Response:", res.data);
 
             setSuccess(true);
@@ -136,8 +137,9 @@ const addMuseum = () => {
                         museumTitle: '',
                         openingTime: '',
                         location: '',
-                        cotactInfo: '',
+                        contactInfo: '',
                         accessiblityInfo: '',
+                        map3d: '',
                         slider: [
                             {   
                                 slideTitle: '',
@@ -147,7 +149,7 @@ const addMuseum = () => {
                         ],
                         video: '',
                         virtualTours:[
-                            {tour:''}
+                            { tour:''}
                         ],
                         map: ''
 
@@ -158,9 +160,10 @@ const addMuseum = () => {
                         firstPageImage: Yup.string().required('Image is Required'),
                         museumTitle:  Yup.string().min(3, "Min 3 characters").required('Required Field'),
                         openingTime: Yup.string().min(4, "Min 3 characters").required('Time Field is Required'),
-                        cotactInfo: Yup.string().min(3, "Min 3 characters").required('Required Field'),
+                        contactInfo: Yup.string().min(3, "Min 3 characters").required('Required Field'),
                         accessiblityInfo: Yup.string().min(3, "Min 3 characters").required('Required Field'),
                         location: Yup.string().min(3, "Min 3 characters").required('Required Field'),
+                        map3d: Yup.string().min(3, "Min 3 characters").required('Required to Add GoogleStreetView'),
                         slider: Yup.array().of(
                             Yup.object().shape({ 
                                 slideTitle: Yup.string().min(5, "Title too short").required("Slide title is required"),
@@ -201,7 +204,7 @@ const addMuseum = () => {
                                         types={["jpg", "jpeg", "png", "webp"]}
                                         label={"Upload image right here"}
                                         fileOrFiles={file}
-                                    />
+                                    />{console.log(url)}
                                     <ErrorMessage className="error" name="firstPageImage" component="div" />
                                     <label>Museum Title</label>
                                     <Field type="text" name="museumTitle" placeholder="Museum Title" />
@@ -212,6 +215,9 @@ const addMuseum = () => {
                                     <label>Location</label>
                                     <Field type="text" name="location" placeholder="Location" />
                                     <ErrorMessage className="error" name="location" component="div" />
+                                    <label>Add Google Steet View String</label>
+                                    <Field type="text" name="map3d" placeholder="add link of the googleStreet View" />
+                                    <ErrorMessage className="error" name="map3d" component="div" />
                                     <label>Contact Information</label>
                                     <Field type="text" name="contactInfo" placeholder="Contact Information" />
                                     <ErrorMessage className="error" name="contactInfo" component="div" />
@@ -221,6 +227,86 @@ const addMuseum = () => {
                                     <label>Add 1 Video</label>
                                     <Field type="text" name="video" placeholder="add link to video of the mususeum" />
                                     <ErrorMessage className="error" name="video" component="div" />
+                                    <label>Add Map link</label>
+                                    <Field type="text" name="map" placeholder="add link to the location on the map of the mususeum" />
+                                    <ErrorMessage className="error" name="map" component="div" />
+
+                                    <div
+                                        className="virtual-tours-section"
+                                        style={{ marginTop: "20px", borderTop: "1px solid #ccc", paddingTop: "10px" }}
+                                    >
+                                    
+                                        <label style={{ fontWeight: "bold" }}>Virtual Tours</label>
+
+                                        <FieldArray name="virtualTours">
+                                            
+                                            {({ push, remove }) => (
+                                                <div>
+                                                   
+                                                    {values.virtualTours.map((vt, index) => (
+                                                        <div
+                                                            key={index}
+                                                            className="tour-item"
+                                                            style={{
+                                                                marginBottom: "10px",
+                                                                display: "flex",
+                                                                alignItems: "center",
+                                                                gap: "10px",
+                                                            }}
+                                                        >
+                                                          
+                                                            <div style={{ flex: 1 }}>
+                                                                
+                                                                <Field
+                                                                    name={`virtualTours.${index}.tour`}
+                                                                    placeholder="Paste virtual tour link here (e.g. Matterport or 360 view)"
+                                                                />
+                                                                <ErrorMessage
+                                                                    className="error"
+                                                                    name={`virtualTours.${index}.tour`}
+                                                                    component="div"
+                                                                />
+                                                            </div>
+                                                            {values.virtualTours.length > 1 && (
+                                                                <button
+                                                                    type="button"
+                                                                    onClick={() => remove(index)}
+                                                                    style={{
+                                                                        color: "red",
+                                                                        background: "none",
+                                                                        border: "none",
+                                                                        cursor: "pointer",
+                                                                        fontSize: "1.2rem",
+                                                                    }}
+                                                                >
+                                                                    
+                                                                    <span className="material-symbols--delete-outline">x</span>
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    ))}
+                                                    <button
+                                                        type="button"
+                                                        className="add-tour-btn"
+                                                        onClick={() => push({ tour: "" })}
+                                                        style={{
+                                                            marginTop: "5px",
+                                                            fontSize: "0.8rem",
+                                                            padding: "5px 10px",
+                                                            backgroundColor: "var(--red-color)",
+                                                            border: "1px solid #999",
+                                                            borderRadius: "15px",
+                                                            cursor: "pointer",
+                                                        }}
+                                                    >
+                                                        
+                                                        + Add Another Tour Link
+                                                    </button>
+                                                </div>
+                                            )}
+                                        </FieldArray>
+                                    </div>
+
                                     
                                 </div>
 
@@ -256,10 +342,10 @@ const addMuseum = () => {
                                                             </div>
 
                                                             <div className='field-group'>
-                                                                <label>Slide Title</label>
+                                                                <label>Slide Description</label>
 
                                                                 <Field type="text" name={`slider.${index}.slideDescription`} placeholder="Slide Describtion" />
-                                                                <ErrorMessage className="error" name={`slider.${index}.slideTitle`} component="div" />
+                                                                <ErrorMessage className="error" name={`slider.${index}.slideDescription`} component="div" />
 
                                                             </div>
 
@@ -272,7 +358,7 @@ const addMuseum = () => {
                                                                     name={`slider.${index}.slideImage`}
                                                                     types={["jpg", "jpeg", "png", "webp"]}
                                                                     label={"Upload image right here"}
-                                                                    fileOrFiles={file}
+                                                                    fileOrFiles={values.slider[index].slideImage || null}
                                                                 />
                                                                 <ErrorMessage className="error" name={`slider.${index}.slideImage`} component="div" />
 
@@ -284,7 +370,7 @@ const addMuseum = () => {
                                                 <button
                                                     type="button"
                                                     className='add-slide-btn'
-                                                    onClick={()=> push({title: "", desription: '', urlImage: ''})}
+                                                    onClick={()=> push({slideTitle: "", slideDesription: '', slideImage: ''})}
                                                     style={{ color: "green", margin: "20px 0px 20px 0"}}
                                                 > 
                                                     Add new   
@@ -293,13 +379,7 @@ const addMuseum = () => {
                                         )}
                                     </FieldArray>
 
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        style={{ backgroundColor: "#56D55D", color: "white", padding: "10px 20px", border: "none", borderRadius: "5px", cursor: "pointer" }}
-                                    >
-                                        {isSubmitting ? "Submitting..." : "Submit"}
-                                    </button>
+                                    <Button type="submit" text="Submit" disabled={isSubmitting} style={{ backgroundColor: "#56D55D", color: "white" }} />
                                 </div>
                             </div>
                         </Form>
