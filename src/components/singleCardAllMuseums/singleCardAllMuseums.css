@@ -1,0 +1,25 @@
+.singleCardMuseumWrapper{
+    width: 210px;
+    height: 326px;
+
+}
+
+
+
+
+.singleCardMuseumWrapper:hover {
+    background-color: rgb(#ffffff5d);
+
+}
+
+.singleCardMuseumContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eachMuseumImage{
+    border-radius: 100px;
+    width: 205px;
+    height: 200px;
+}

@@ -10,6 +10,7 @@ import Home from './Pages/Home/home.jsx';
 import About from './Pages/about/about.jsx';
 import ScrollToTop from './components/Tools/scrollToTop/scrollToTop.jsx';
 import AddMuseum from './Pages/addMuseum/addMuseum.jsx';
+import EachMuseum from './Pages/EachMuseum/eachMuseum.jsx';
 import './App.css'
 
 function App() {
@@ -56,6 +57,11 @@ function App() {
 
                 path="/addMuseum"
                 element={<AddMuseum />}
+              />
+              <Route
+
+                path="/eachMuseum"
+                element={<EachMuseum/>}
               />
 
             </Route>

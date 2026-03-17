@@ -1,0 +1,14 @@
+.importantMuseumInfo{
+    
+}
+
+.museumuImportantIcon{
+    width: 84px;
+    height: 84px;
+}
+
+.innerMusuemImportantBlock{
+    display: flex;
+    flex-direction: column;
+
+}

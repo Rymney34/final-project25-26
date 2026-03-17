@@ -1,0 +1,60 @@
+.sliderMuseumContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    font-family: sans-serif;
+}
+
+.sliderMuseumContent{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    align-items: start;
+}
+
+.textSection{
+    flex: 1;
+}
+
+.textSection h2 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.textSection p {
+    line-height: 1.6;
+}
+
+.imageSection{
+    flex: 1;
+}
+
+.sliderContentImage{
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.sliderControls{
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.prev-button:hover,
+.next-button:hover{
+    transform: scale(1.1);
+}
+
+.arrow-icon{
+    width: 32px;
+    height: 32px;
+}
+
+
+
