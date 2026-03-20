@@ -4,15 +4,15 @@ import './allMuseums.css'
 import Button from "../../components/Tools/button/button";
 import SingleCardMuseum from "../../components/singleCardAllMuseums/singleCardAllMuseums";
 
-
+const API = import.meta.env.VITE_API_URL;;
 
 const AllMuseums = () => {
 
-    const {museumsData, setMuseumsData} = useState();
+    const [museumsData, setMuseumsData] = useState([]);
     useEffect(() => {
         const fetchMuseums = async () => {
             try{
-                const response = await axios.get("/api/getAllMuseums");
+                const response = await axios.get(`${API}/api/getAllMuseums`);
 
                 setMuseumsData(response.data)
             }catch(error){
@@ -22,18 +22,25 @@ const AllMuseums = () => {
         fetchMuseums()
     },[])
 
+    console.log(museumsData);
+
     return (
         <div className='eachMuseumWrapper'>
             <div className="allMusuemsDisplay">
-                {museums.map((museum, index)=>{
-                    <SingleCardMuseum index={index} museum={museum}/>
-                }
-
+                {museumsData.length > 0 ? (
+                    museumsData.map((museum, index)=> (
+                
+                        <SingleCardMuseum index={index} museum={museum}/>
+                              
+                    ))
+                ) : (
+                    <p>Gazoz</p>
                 )}
+                
                     
             </div>
-            <div>
-                <Button text="Load More"/>
+            <div style={{margin: "20px 0px 20px 0px"}}>
+                <Button text="Load More" style={{ backgroundColor: "var(--red-color)"}}/>
             </div>
         </div>
     )

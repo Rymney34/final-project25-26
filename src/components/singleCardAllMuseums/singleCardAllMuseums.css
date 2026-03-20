@@ -1,14 +1,19 @@
 .singleCardMuseumWrapper{
-    width: 210px;
+    width: 215px;
     height: 326px;
-
+    padding-top: 15px;
 }
 
 
 
 
 .singleCardMuseumWrapper:hover {
-    background-color: rgb(#ffffff5d);
+    background-color: rgba(255, 255, 255, 0.197);
+    cursor: pointer;
+    border-radius: 15px;
+    width: 215px;
+    height: 326px;
+    padding-top: 15px;
 
 }
 
@@ -16,10 +21,37 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+   justify-content: center;
+   flex: 1 1 calc(25% - 20px);
+   /* width: 300px; */
 }
 
 .eachMuseumImage{
     border-radius: 100px;
     width: 205px;
     height: 200px;
+}
+
+.cardContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardContent h3{
+    font-size: 16px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    line-height: 1.2;
+    width: 100%;
+    margin-bottom: 5px;
+    margin: 20px 3px 0 3px;
+
+}
+.cardContent h4 {
+    font-size: 16px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }
