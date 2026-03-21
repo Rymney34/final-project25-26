@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useState } from "react";
 
 import './eachMuseum.css'
-import location from '../../../resources/img/location_on.png'
-import calendar from '../../../resources/img/calendar.png'
-import planVisit from '../../../resources/img/planVisit.png'
-import phone from '../../../resources/img/phone.png'
-import accessability from '../../../resources/img/accessability.png'
-import QuickInfoItem from '../../components/quickInfoItem/quickInfoItem'
-import { ImportantMuseumInfo } from '../../components/importantMuseumInfo/importantMuseumInfo'
-import EachMuseumSlider from '../../components/eachMuseumSlider/eachMuseumSlider'
+import location from '../../../resources/img/location_on.png';
+import calendar from '../../../resources/img/calendar.png';
+import planVisit from '../../../resources/img/planVisit.png';
+import phone from '../../../resources/img/phone.png';
+import accessibility from '../../../resources/img/accessibility.png';
+import QuickInfoItem from '../../components/quickInfoItem/quickInfoItem';
+import { ImportantMuseumInfo } from '../../components/importantMuseumInfo/importantMuseumInfo';
+import EachMuseumSlider from '../../components/eachMuseumSlider/eachMuseumSlider';
+
 
 
 const EachMuseum = () => {
@@ -104,7 +105,7 @@ const EachMuseum = () => {
                 </div>
                 <div className='bottomMuseumImportantBlock'>
                     <ImportantMuseumInfo title="Opening Hours:" icon={time} blockInfo={openingTime} />
-                    <ImportantMuseumInfo title="Accessability:" icon={accessability} blockInfo={accessabilityInfo} />
+                    <ImportantMuseumInfo title="Accessability:" icon={accessibility} blockInfo={accessabilityInfo} />
                 </div>
             </div>
         </div>

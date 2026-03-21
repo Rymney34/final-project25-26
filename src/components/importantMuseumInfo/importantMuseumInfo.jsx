@@ -1,4 +1,4 @@
-import './imortantMuseumInfo.css'
+import './importantMuseumInfo.css'
 
 export const ImportantMuseumInfo = (props) => {
 
