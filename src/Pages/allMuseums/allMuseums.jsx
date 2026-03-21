@@ -6,7 +6,7 @@ import Button from "../../components/Tools/button/button";
 import SingleCardMuseum from "../../components/singleCardAllMuseums/singleCardAllMuseums";
 import Spinner from "../../components/spinner/Spinner";
 
-const API = import.meta.env.VITE_API_URL;;
+const API = import.meta.env.VITE_API_URL;
 
 const AllMuseums = () => {
 
@@ -37,7 +37,7 @@ const AllMuseums = () => {
                 {museumsData.length > 0 ? (
                     museumsData.map((museum, index)=> (
                 
-                        <SingleCardMuseum index={index} id={museum.id} museum={museum}/>
+                        <SingleCardMuseum index={index} museum={museum}/>
                               
                     ))
                 ) : (

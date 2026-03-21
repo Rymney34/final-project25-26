@@ -2,7 +2,7 @@ import './importantMuseumInfo.css'
 
 export const ImportantMuseumInfo = (props) => {
 
-    props = {title, icon, blockInfo, style }
+    const {title, icon, blockInfo, style } = props;
     return(
         <div style={style} className='importantMuseumInfo'>
             <img className="museumuImportantIcon" src={icon} alt={`icon of ${title}`} />

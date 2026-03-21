@@ -1,14 +1,32 @@
 .importantMuseumInfo{
-    
+    display: flex;
+    width: 30vw;
+    margin-bottom: 50px;
 }
 
 .museumuImportantIcon{
-    width: 84px;
-    height: 84px;
+    width: 64px;
+    height: 64px;
 }
+
+
 
 .innerMusuemImportantBlock{
     display: flex;
     flex-direction: column;
+    
 
+
+
+}
+
+.innerMusuemImportantBlock h4{
+    font-size: 30px;
+    margin-bottom: 0;
+   
+}
+
+.ourLocationImportantBlock{
+    font-size: 20px;
+    margin: 0;
 }

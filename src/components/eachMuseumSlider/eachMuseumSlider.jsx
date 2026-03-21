@@ -29,18 +29,21 @@ const EachMuseumSlider = ({slides}) =>{
         return () => window.removeEventListener('keydown', handleKeyPress);
     },[nextSlide, prevSlide])
 
-    const {slideImage, slideTitle, slideText} = slides[currentSlide];
+    const { slideImage, slideTitle, slideDescription } = slides[currentSlide];
 
     return (
         <div aria-roledescription="carousel" aria-label="Exhibit Gallery" className="sliderMuseumContainer" aria-live="polite">
             <div className="sliderMuseumContent">
-                <div className="textSection">
-                    <h2>{slideTitle}</h2>
-                    <p>{slideText}</p>
+                <div className="innerSliderMuseumContent">
+                    <div className="textSection">
+                        <h2>{slideTitle}</h2>
+                        <p>{slideDescription}</p>
+                    </div>
+                    <div className="imageSection">
+                        <img src={slideImage} alt={slideTitle} className="sliderContentImage" />
+                    </div>
                 </div>
-                <div className="imageSection">
-                    <img src={slideImage} alt={slideTitle} className="sliderContentImage"/>
-                </div>
+                
             </div>
             <div className="sliderControls">
                 <button onclick={prevSlide} className="prev-button" aria-label="Previous Slide">

@@ -11,7 +11,7 @@ const offScreenMenu = ({isOpen, closeMenu}) =>{
             <div className='menuList'>
                 <ul>
                     <li><NavLink to="/home" className={({isActive}) => isActive ? "activeLink" : ""} onClick={closeMenu}>Home</NavLink></li>
-                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>All Museums</NavLink></li>
+                    <li><NavLink to="/allMuseums" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>All Museums</NavLink></li>
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Library</NavLink></li>
                     <li><NavLink to="/chatBot" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>AI Chatbot</NavLink></li>
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Profile Settings</NavLink></li>

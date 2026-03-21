@@ -1,0 +1,175 @@
+.firstMuseumBlockInfo{
+    display: flex;
+    padding-top: 141px;
+    width: 100%;
+    gap: 100px
+}
+
+.eacMuseumWrapper{
+    padding-bottom: 120px;
+}
+
+.imageLeftBlock{
+    
+}
+
+.imageLeftBlock img {
+    width: 758px;
+    height: 547px;
+    border-radius: 30px 0 30px 0;
+    margin: 0 0 0 60px;
+}
+
+.eachMuseumTitle{
+    font-size:30px
+}
+
+.openingHours{
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.locationTitle{
+    margin: 20px 0 5px 0;
+}
+
+.openingTimeTitle{
+    margin: 0;
+}
+.openingTimePara{
+    margin: 5px 0 10px 0;
+}
+
+.locationInfo{
+    font-size: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.museumInfoBlock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.planYourVisitWrapper{
+    display: flex;
+    align-items: center;
+    height: 710px;
+    flex-direction: column;
+    background-color: var(--red-color);
+    margin: 100px 0 0 0;
+}
+
+.planYourVisitTitle{
+    font-size: 26px;
+    color: white;
+}
+
+.planYourVisitContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 30px 0 0 0;
+}
+
+.museumContentSlider{
+    background-color: white;
+    margin: 0;
+    height: 780px;
+    width: 100vw;
+}
+
+.museumVideoWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.videoBlockWrapper{
+
+    margin: 50px 0 0 0;
+}
+
+.videoBlockWrapper video {
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 70vw;
+    height: 70vh;
+}
+
+.blockTitle{
+    color: white;
+    font-size: 26px;
+}
+
+.virtualMuseumToursWrapperDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.virtualMuseumTitle{
+    font-size: 26px;
+}
+
+.googleStreetViewWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+}
+
+.googleStreetViewTitle{
+    color: white;
+    font-size: 26px;
+}
+
+
+.museumLastImportantBlockWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+.museumImportantInfoTitle{
+    color:white;
+    font-size: 26px;
+    margin-bottom: 50px;
+}
+
+.leftMuseumImportantBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.rightMuseumImportantBlock{
+    border: 1px solid black;
+    width: 600px;
+    height: 400px;
+}
+.middleMuseumImportantBlock{
+    display: flex;
+    flex-direction: row;
+    gap:120px;
+    margin-bottom: 50px;
+    
+}
+
+.bottomMuseumImportantBlock{
+    display: flex;
+    gap: 300px
+}
