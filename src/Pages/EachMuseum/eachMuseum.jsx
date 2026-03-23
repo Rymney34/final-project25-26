@@ -24,6 +24,8 @@ const EachMuseum = () => {
     const {id} = useParams();
     const [museumData, setMuseumData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [activeTour, setActiveTour] = useState(null);
+    const [visibleCount, setVisibleCount] = useState(6);
 
     useEffect(() => {
         const getEachMuseum = async () => {
@@ -42,11 +44,19 @@ const EachMuseum = () => {
         getEachMuseum()
     },[id]);
 
-    if(loading) return <Spinner/>;
-    if(!museumData) return <div>Museum Not Found!</div>
+    const loadMore = () => {
 
-    const { firstPageImage, accessabilityInfo, contactInfo, location, map, map3d, museumTitle, openingTime, video, virtualTours, slider} = museumData
+        setVisibleCount(prevCount => prevCount + 6);
+    }
 
+   
+
+    if (loading) return <div style={{padding: 100}}><Spinner /></div>;
+    if (!museumData) return <div style={{ padding: 100 }}>Museum Not Found!</div>
+
+    const { firstPageImage, accessiblityInfo, contactInfo, location, map, map3d, museumTitle, openingTime, video, virtualTours, slider} = museumData
+
+    const displayedTours = virtualTours.slice(0, visibleCount)
     
     return(
         
@@ -100,27 +110,62 @@ const EachMuseum = () => {
                     </video>
                 </div>
             </div>
+            {displayedTours && displayedTours.length > 0 ? (
             <div className='virtualMuseumToursWrapperDiv'>
+            
+
+               
                 <div className='virtualMuseumTitle'>
                     <h2>Virtual Museum Tour</h2>
 
                 </div>
                 <div className='allMuseumVirtualTours'>
-                    {virtualTours.map((tour,i) => {
-                        <div key={i} className='virTourWrapper'>
-                            <iframe src={tour} />
+                    
+                    {/* <iframe src="https://my.matterport.com/show?play=1&lang=en-US&m=FShi7mPqZuM" /> */}
+                    {displayedTours.length > 0 ? (
+                
+                        displayedTours.map((item,i) => {
+                            console.log(item.tour);
+                                return (
+                                    <div key={i} className='virTourWrapper' onClick={() => setActiveTour(item.tour)}>
+                                        <div className="iframeOverlay">Click to view Tour</div>
+                                        <iframe className="virtulIframe" src={item.tour} />
+                                    </div>
+                                ) 
+                            })
+                        ) : <Spinner />
+
+                    }
+
+                    {activeTour && (
+                        <div className="modalBackdrop" onClick={() => setActiveTour(null)}>
+                            <div className="modalContent" onClick={(e) => e.stopPropagation()}>
+                                <Button style={{backgroundColor: "var(--red-color)",position: "absolute", top: "-40px", right: 0}}text="Close" onClick={() => setActiveTour(null)}/>
+                                <iframe
+                                    src={activeTour}
+                                    className="fullIframe"
+                                    allowFullScreen
+                                />
+                            </div>
                         </div>
-                    })}
-                  
+                    )}
                 </div>
+           
+                {visibleCount < virtualTours.length && (
+                    <Button style={{ backgroundColor: "var(--red-color)", margin: "40px 0px 0px 0px" }} text="Load More" onClick={loadMore}/>
+                )}
+                    
+               
             </div>
+             ) : " "}
             <div className='googleStreetViewWrapper'>
                 <div className='googleStreetViewTitle'>
                     <h2>Google Street View (360)</h2>
 
                 </div>
                 <div>
-
+                     <iframe src="https://www.google.com/maps/embed?pb=!4v1774222227507!6m8!1m7!1smqgd5k54VB9WDhhezFuNrw!2m2!1d53.47733364364755!2d-2.243749915640756!3f154.07979!4f0!5f0.7820865974627469" width="1250" height="700"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"> 
+                    </iframe>                 
                 </div>
             </div>
             <div className='museumLastImportantBlockWrapper'>
@@ -131,20 +176,30 @@ const EachMuseum = () => {
                     <div className='leftMuseumImportantBlock'>
                         <ImportantMuseumInfo title="Our location:" icon={locationImage} blockInfo={location} />
                         <ImportantMuseumInfo title="Contact Us:" icon={phone} blockInfo={contactInfo} />
+                        
                     </div>
                     <div className='rightMuseumImportantBlock'>
                         <div className='museumMapLocationWrapper'>
-                            <map>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2374.505030518793!2d-2.2462693231118043!3d53.47730557232764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487bb1c01998181f%3A0xd6ec4a6aad2bd206!2sFaulkner%20Court%2C%20Faulkner%20St%2C%20Manchester%20M1%204EE!5e0!3m2!1sru!2suk!4v1774223079430!5m2!1sru!2suk"
+                            className="bottomMap"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            >
 
-                            </map>
+                            </iframe>
                         </div>
+                       
 
                     </div>
                 </div>
                 
                 <div className='bottomMuseumImportantBlock'>
                     <ImportantMuseumInfo title="Opening Hours:" icon={time} blockInfo={openingTime} />
-                    <ImportantMuseumInfo title="Accessability:" icon={accessibility} blockInfo={accessabilityInfo} />
+                    <div className="rightBottomMuseumImportantBlock">
+                        <ImportantMuseumInfo title="Accessibility:" icon={accessibility} blockInfo={accessiblityInfo} />
+                    </div>
+                   
                 </div>
             </div>
         </div>

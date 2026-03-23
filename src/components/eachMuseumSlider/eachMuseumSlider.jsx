@@ -4,6 +4,7 @@ import "./eachMuseumSlider.css";
 
 const EachMuseumSlider = ({slides}) =>{
 
+   
     const [currentSlide, setCurrentSlide] = useState(0);
 
     if(!slides || slides.length === 0){
@@ -11,13 +12,19 @@ const EachMuseumSlider = ({slides}) =>{
     }
 
     const nextSlide = useCallback(() => {
+        console.log("next")
+       
         setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+       
     }, [slides.length]);
 
     const prevSlide = useCallback(() => {
+        console.log("prev")
+        
         setCurrentSlide((prevSlide) =>
             (prevSlide === 0 ? slides.length - 1 : prevSlide -1)
-        )
+        );
+       
     },[slides.length])
 
     useEffect(()=> {
@@ -35,18 +42,18 @@ const EachMuseumSlider = ({slides}) =>{
         <div aria-roledescription="carousel" aria-label="Exhibit Gallery" className="sliderMuseumContainer" aria-live="polite">
             <div className="sliderMuseumContent">
                 <div className="innerSliderMuseumContent">
-                    <div className="textSection">
+                    <div key={currentSlide} className="textSection active" >
                         <h2>{slideTitle}</h2>
                         <p>{slideDescription}</p>
                     </div>
-                    <div className="imageSection">
-                        <img src={slideImage} alt={slideTitle} className="sliderContentImage" />
+                    <div className="sliderImageSection">
+                        <img key={currentSlide} src={slideImage} alt={slideTitle} className="sliderContentImage active" />
                     </div>
                 </div>
                 
             </div>
             <div className="sliderControls">
-                <button onclick={prevSlide} className="prev-button" aria-label="Previous Slide">
+                <button onClick={prevSlide} className="prev-button" aria-label="Previous Slide">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         width="24" 
@@ -57,7 +64,7 @@ const EachMuseumSlider = ({slides}) =>{
                         <path fill="#000000" d="M10 22L0 12L10 2l1.775 1.775L3.55 12l8.225 8.225z" />
                     </svg>
                 </button>
-                <button onclick={nextSlide} className="next-button" aria-label="Next Slide">
+                <button onClick={nextSlide} className="next-button" aria-label="Next Slide">
                     <svg 
                         xmlns="http://www.w3.org/2000/svg" 
                         width="24"

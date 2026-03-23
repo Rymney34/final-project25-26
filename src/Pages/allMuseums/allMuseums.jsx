@@ -11,6 +11,7 @@ const API = import.meta.env.VITE_API_URL;
 const AllMuseums = () => {
 
     const [museumsData, setMuseumsData] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(10);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -26,10 +27,9 @@ const AllMuseums = () => {
         fetchMuseums()
     },[])
 
-   
-    
-
-    console.log(museumsData);
+    const loadMore = () => {
+        setVisibleCount(prevCount => prevCount + 5);
+    }
 
     return (
         <div className='eachMuseumWrapper'>
@@ -47,7 +47,10 @@ const AllMuseums = () => {
                     
             </div>
             <div style={{margin: "20px 0px 20px 0px"}}>
-                <Button text="Load More" style={{ backgroundColor: "var(--red-color)"}}/>
+                {visibleCount < museumsData.length && (
+                    <Button text="Load More" onClick={loadMore} style={{ backgroundColor: "var(--red-color)" }} />
+                )}
+               
             </div>
         </div>
     )
