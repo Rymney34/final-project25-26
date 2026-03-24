@@ -1,0 +1,118 @@
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 320px;
+  min-height: 300px;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#formLogin {
+  padding-top: 1px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, rgba(31, 39, 148, 1) 0%, rgb(141, 33, 105) 62%, rgba(130, 24, 26) 100%);
+}
+
+.logoClassLogin{
+  width: 18vw;
+  height: 8vh;
+}
+
+
+.loginForm input{
+  background-color: white;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+ 
+}
+
+.loginForm h3 {
+  color: black;
+
+}
+
+.loginTitle{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loginForm input:focus {
+  border-color: var(--red-color);
+  outline: none;
+  box-shadow: 0 0 5px rgba(85, 99, 222, 0.3);
+}
+
+
+.password-container {
+  position: relative;
+  width: 300px;
+ 
+}
+
+#password{
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #bbb;
+  border-radius: 15px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  width: 294px;
+   
+}
+
+.eye-icon {
+  position: absolute;
+  right: 1px;
+  top: 41%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #555;
+}
+
+
+.errors {
+  color: #d9534f;
+  font-size: 0.85rem;
+  margin: -0.5rem 0 0.75rem 0;
+}
+
+
+.loginForm button {
+  padding: 0.75rem;
+  background: var(--red-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.loginForm button:disabled {
+  background: #a3e3b2;
+  cursor: not-allowed;
+}
+
+.loginForm button:hover:enabled {
+  background: #3fb84b;
+}
+
+span{
+  color: black;
+}
