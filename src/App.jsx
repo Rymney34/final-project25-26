@@ -16,6 +16,7 @@ import AllMuseums from './Pages/allMuseums/allMuseums.jsx';
 import EachMuseum from './Pages/EachMuseum/eachMuseum.jsx'
 import Login from './Pages/login/Login.jsx';
 import Register from './Pages/register/Register.jsx';
+import ProtectedRoute from './components/Tools/protectedRoute/protected.route.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,58 +38,53 @@ function App() {
               path="/register"
               element={<Register />}
             />
+            <Route element={<ProtectedRoute/>}>
+                <Route path="/" element={<WebApp />}>
+                  <Route
+                    path="/home"
+                    element={<Home />}
+                  />
 
-            <Route path="/" element={<WebApp />}>
+                  <Route
 
-              
+                    path="/chatBot"
+                    element={<MainChatBot />}
+                  />
 
-              <Route
-                path="/home"
-                element={<Home />}
-              />
+                  <Route
 
-              <Route
+                    path="/events"
+                    element={<allEvents />}
+                  />
+                  <Route
 
-                path="/chatBot"
-                element={<MainChatBot />}
-              />
+                    path="/libraryHub"
+                    element={<libraryHub/>}
+                  />
 
-              <Route
+                  <Route
 
-                path="/events"
-                element={<allEvents />}
-              />
-              <Route
+                    path="/about"
+                    element={<About/>}
+                  />
 
-                path="/libraryHub"
-                element={<libraryHub/>}
-              />
+                  <Route
 
-              <Route
+                    path="/addMuseum"
+                    element={<AddMuseum />}
+                  />
+                  <Route
 
-                path="/about"
-                element={<About/>}
-              />
+                    path="/eachMuseum/:id"
+                    element={<EachMuseum/>}
+                  />
+                  <Route
 
-              <Route
-
-                path="/addMuseum"
-                element={<AddMuseum />}
-              />
-              <Route
-
-                path="/eachMuseum/:id"
-                element={<EachMuseum/>}
-              />
-              <Route
-
-                path="/allMuseums"
-                element={<AllMuseums/>}
-              />
-
-
-            </Route>
-            
+                    path="/allMuseums"
+                    element={<AllMuseums/>}
+                  />
+                </Route>
+              </Route>
           </Routes>  
 
         </div>

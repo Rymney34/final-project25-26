@@ -9,9 +9,10 @@ import * as Yup from 'yup';
 
 
 const API_ENDPOINT = "/api/register"; 
-
+const API = import.meta.env.VITE_API_URL;
 
     const Register = () => {
+      
 
         const [showPassword, setShowPassword] = useState(false);
         const navigate = useNavigate();
@@ -20,7 +21,9 @@ const API_ENDPOINT = "/api/register";
         const handleSubmit = async (values, { setSubmitting, setStatus }) => {
 
             try {
-                const res = await axios.post(`${API_ENDPOINT}`, values);
+                console.log("Handle Register")
+                console.log(values);
+                const res = await axios.post(`${API}${API_ENDPOINT}`, values);
                 // console.log("Registration successful:", res.data);
 
                 // navigate("/");
@@ -30,7 +33,7 @@ const API_ENDPOINT = "/api/register";
 
             } catch (error) {
                 console.error(error);
-                setStatus({error: error.response?.data?.message || 'Registtration failed try again!'})
+                setStatus({error: error.response?.data?.message || 'Registration failed try again!'})
             } finally {
 
             }
@@ -48,6 +51,7 @@ const API_ENDPOINT = "/api/register";
                     <Formik
                         initialValues={{ 
                             firstName: '',
+                            lastName: '',
                             email: '',
                             password: '',
 
@@ -56,6 +60,8 @@ const API_ENDPOINT = "/api/register";
                             validationSchema = {Yup.object({
                                 firstName: Yup.string()
                                             .required('Required Field'),
+                                lastName: Yup.string()
+                                    .required('Required Field'),
                                 email: Yup.string()
                                             .email('Wrong Email address')
                                             .required('Required Field'),
@@ -85,6 +91,8 @@ const API_ENDPOINT = "/api/register";
                                     
                                 <Field type="text" name="firstName" id="firstName" placeHolder="First Name" />
                                     <ErrorMessage name="firstName" component="div" />
+                                <Field type="text" name="lastName" id="lastName" placeHolder="Last Name" />
+                                    <ErrorMessage name="lastName" component="div" />
                                 <Field type="email" name="email" id="email" placeHolder="Email" />
                                     <ErrorMessage name="email" component="div" />
                                     

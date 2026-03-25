@@ -33,6 +33,7 @@
   margin-bottom: 1rem;
   border: 1px solid #bbb;
   background-color: white;
+  color: black;
   border-radius: 15px;
   font-size: 0.95rem;
   transition: border-color 0.3s, box-shadow 0.3s;

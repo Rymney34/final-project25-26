@@ -12,7 +12,7 @@ import "./Login.css"
 import * as Yup from 'yup';
 const API_ENDPOINT = "/api/login"; 
 
-
+const API = import.meta.env.VITE_API_URL;
 
 
 
@@ -42,10 +42,11 @@ const API_ENDPOINT = "/api/login";
 
     const handleSubmit = async (values, { setSubmitting, setStatus }) => {
         try {
-          const response = await fetch(`${API_ENDPOINT}`, {
+          const response = await fetch(`${API}${API_ENDPOINT}`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(values),
+              credentials: 'include',
           });
           
 

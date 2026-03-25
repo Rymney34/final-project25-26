@@ -1,16 +1,15 @@
-
-
 import { useEffect, useState } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { isAuthenticated } from "../authFront/auth";
-import { useAuth } from "../authFront/authContext"; //hook
+import { isAuthenticated } from "../authFront/auth.js";
+import { useAuth } from "../authFront/authContext.jsx"; 
+import Spinner from "../../spinner/Spinner.jsx"
 
 const ProtectedRoute = () => {
   const [authStatus, setAuthStatus] = useState(null);
   const location = useLocation(); 
   
   
-  const { updateToken, token } = useAuth(); 
+  const { updateToken, token } = useAuth; 
 
   useEffect(() => {
     const checkAuth = async () => {
@@ -21,10 +20,10 @@ const ProtectedRoute = () => {
     };
     
     checkAuth();
-  }, [location.pathname, token, updateToken]); // Зависимости обновлены
+  }, [location.pathname, token, updateToken]);
 
  
-  if (authStatus === null) return <div>Loading...</div>;
+  if (authStatus === null) return <Spinner/>;
 
   if (!authStatus) return <Navigate to="/login" replace />;
 

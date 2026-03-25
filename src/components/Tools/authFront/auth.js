@@ -1,4 +1,8 @@
 
+const API = import.meta.env.VITE_API_URL;
+let isRefreshing = false;
+let refreshPromise = null;
+
 export const isAuthenticated = async (onTokenRefreshed) => {
   const token = localStorage.getItem("token");
 
@@ -9,7 +13,7 @@ export const isAuthenticated = async (onTokenRefreshed) => {
   }
 
 
-  const response = await fetch("/api/auth/validate", {
+  const response = await fetch(`${API}/api/auth/validate`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },
   });
@@ -27,28 +31,45 @@ export const isAuthenticated = async (onTokenRefreshed) => {
 };
 
 
-async function tryRefresh(onTokenRefreshed) {
-  try {
-    const refreshResponse = await fetch("/api/refresh", {
-      method: "POST",
-      credentials: "include",
-    });
+export async function tryRefresh(onTokenRefreshed) {
 
-    if (!refreshResponse.ok) return false;
+  if(isRefreshing) return refreshPromise;
 
-    const data = await refreshResponse.json();
-    
-    onTokenRefreshed(data.accessToken); 
-    
-    return true;
+  isRefreshing = true;
 
-  } catch (err) {
-    return false;
-  }
+  refreshPromise = (async () => {
+    try {
+      const refreshResponse = await fetch(`${API}/api/refresh`, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!refreshResponse.ok) throw new Error("Refresh Failed");
+
+      const data = await refreshResponse.json();
+
+      console.log("refreshToken", data)
+
+      localStorage.setItem("token", data.accessToken)
+      if (onTokenRefreshed) onTokenRefreshed(data.accessToken);
+
+      return true;
+
+    } catch (err) {
+      localStorage.removeItem("token");
+      return false;
+    } finally{
+      isRefreshing = false;
+      refreshPromise = null;
+    }
+  })();
+
+  return refreshPromise
+  
 }
 // logout frontedn requesting logout from the backend and then exporting it 
 export async function logout(){
-  await fetch("/api/logout", {
+  await fetch(`${API}/api/logout`, {
   method: "POST",
   credentials: "include",
 });
