@@ -1,18 +1,13 @@
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-
 const AuthContext = createContext();
-
 
 export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem("token"));
     
-
     const [isLoading, setIsLoading] = useState(true);
 
-  
     const updateToken = (newToken) => {
         if (newToken) {
             localStorage.setItem("token", newToken);
@@ -23,7 +18,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-
     const handleLogout = async () => {
         await fetch("/api/logout", {
             method: "POST",
@@ -33,10 +27,8 @@ export const AuthProvider = ({ children }) => {
     };
 
     useEffect(() => {
-    
         setIsLoading(false);
     }, []);
-
 
     const contextValue = {
         token,

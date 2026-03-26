@@ -1,0 +1,25 @@
+.eachLibraryWrapper{
+    width: 90vw;
+    height: 30vh;
+    display: flex;
+    gap: 30px;
+}
+.eachLibraryWrapper:hover{
+    border-radius: 25px;
+    background-color: rgb(rgba(255, 255, 255, 0.296));
+}
+.libraryRealImage{
+    width: 550px;
+    height: 300px;
+}
+.libraryMainContent{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.libraryTitle{
+
+}
+.libraryBriefDescription{
+
+}

@@ -1,0 +1,25 @@
+.eachEventWrapper{
+    width: 90vw;
+    height: 30vh;
+    display: flex;
+    gap: 30px;
+}
+.eachEventWrapper:hover{
+    border-radius: 25px;
+    background-color: rgb(rgba(255, 255, 255, 0.296));
+}
+.eventRealImage{
+    width: 550px;
+    height: 300px;
+}
+.eventMainContent{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.eventTitle{
+
+}
+.eventBriefDescription{
+
+}

@@ -1,5 +1,5 @@
 import "./allEvents.css";
-
+import EachEventItem from '../../components/eachEventItem/eachEventItem.jsx'
 
 const allEvents = () => {
     return (

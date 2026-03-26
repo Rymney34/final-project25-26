@@ -1,5 +1,5 @@
 import "./libraryHub.css";
-
+import EachLibraryItem from '../../components/eachLibraryItem/eachLibraryItem.jsx'
 
 const libraryHub = () =>{
     return(
