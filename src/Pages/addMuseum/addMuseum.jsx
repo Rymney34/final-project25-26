@@ -73,7 +73,7 @@ const addMuseum = () => {
 
     const handleSlideImageUpload = async (imageFile, index, setFieldValue) => {
         
-        console.log("gaz")
+        
         try {
             const formdata = new FormData();
             formdata.append("slideImage", imageFile);
@@ -93,7 +93,7 @@ const addMuseum = () => {
     };
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-        console.log("gaz")
+      
         try {
             const res = await axios.post(`${API}/api/createMuseum`, values);
             console.log("Response:", res.data);
@@ -163,7 +163,7 @@ const addMuseum = () => {
                         contactInfo: Yup.string().min(3, "Min 3 characters").required('Required Field'),
                         accessiblityInfo: Yup.string().min(3, "Min 3 characters").required('Required Field'),
                         location: Yup.string().min(3, "Min 3 characters").required('Required Field'),
-                        map3d: Yup.string().min(3, "Min 3 characters").required('Required to Add GoogleStreetView'),
+                        map3d: Yup.string().min(3, "Min 3 characters").required('Required to Add GoogleStreetView coordinates'),
                         slider: Yup.array().of(
                             Yup.object().shape({ 
                                 slideTitle: Yup.string().min(5, "Title too short").required("Slide title is required"),
@@ -171,13 +171,13 @@ const addMuseum = () => {
                                 slideImage: Yup.string().required('Image is Required'),
                             })
                         ),
-                        video: Yup.string().required('Required Field'),
+                        video: Yup.string(),
                         virtualTours: Yup.array().of(
                             Yup.object().shape({
-                                tour: Yup.string().required("Link is Required")
+                                tour: Yup.string()
                             })
                         ),
-                        map: Yup.string().required('Map link is Required'),
+                        map: Yup.string().required('Map coordinates is Required'),
                     
                     })}
                     onSubmit={handleSubmit}
@@ -216,7 +216,7 @@ const addMuseum = () => {
                                     <Field type="text" name="location" placeholder="Location" />
                                     <ErrorMessage className="error" name="location" component="div" />
                                     <label>Add Google Steet View String</label>
-                                    <Field type="text" name="map3d" placeholder="add link of the googleStreet View" />
+                                    <Field type="text" name="map3d" placeholder="add link of the Google Street View e.g 51.13, 12.2" />
                                     <ErrorMessage className="error" name="map3d" component="div" />
                                     <label>Contact Information</label>
                                     <Field type="text" name="contactInfo" placeholder="Contact Information" />
@@ -228,7 +228,7 @@ const addMuseum = () => {
                                     <Field type="text" name="video" placeholder="add link to video of the mususeum" />
                                     <ErrorMessage className="error" name="video" component="div" />
                                     <label>Add Map link</label>
-                                    <Field type="text" name="map" placeholder="add link to the location on the map of the mususeum" />
+                                    <Field type="text" name="map" placeholder="add link to the location on the map of the museum e.g 51.13, 12.2" />
                                     <ErrorMessage className="error" name="map" component="div" />
 
                                     <div

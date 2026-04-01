@@ -78,6 +78,7 @@
 .sliderContentImage{
     max-width: 550px;
     height: auto;
+    max-height: 550px;
     border-radius: 15px;
     object-fit: cover;
     border: 1px solid black;

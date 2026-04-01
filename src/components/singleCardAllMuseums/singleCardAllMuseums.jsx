@@ -37,8 +37,12 @@ const SingleCardMuseum = (museum,index) => {
             <div className="singleCardMuseumContent" >
                 <img src={firstPageImage} className="eachMuseumImage" alt="museum Image"/>
                 <div className="cardContent">
-                    <h3>{museumTitle}</h3>
-                    <h4>Location:{location}</h4>
+                    <div>
+                        <h3>{museumTitle}</h3>
+                    </div>
+                    <div className="h4Location">   
+                        <h4>Location:{location}</h4>
+                    </div>
                 </div>
             </div>
             
