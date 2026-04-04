@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from '../src/components/header/header';
 import Footer from './components/footer/Footer';
+import MiniChatBot from './components/miniChatBot/miniChatBot';
 
 
 function WebApp() {
@@ -10,7 +11,12 @@ function WebApp() {
     return (
         <div>
             <Header />
-            <Outlet />
+            <div>
+                <Outlet />
+                {!shouldHideFooter && <MiniChatBot />}
+                
+            </div>
+            
            { !shouldHideFooter && <Footer />}
         </div>
     );

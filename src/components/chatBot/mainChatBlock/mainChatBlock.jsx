@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import {useLocation} from 'react-router-dom';
 import Button from "../../Tools/button/button";
 
 
@@ -16,22 +17,47 @@ const mainChatBot = () =>{
     const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
     const chatEndRef = useRef(null);
-    // const API = import.meta.env.VITE_API_URL;;
+// getting state from previous locaiton 
+    const location = useLocation();
 
-    // console.log(API)
-    // useEffect(() => {
-    //     fetch(`${API}/api/test`)
-    //         .then(res => res.json())
-    //         .then(data => console.log(data));
-
-
-    // }, []);
-
-   
-    
     useEffect(() => {
+        // on load send it data to AI so user would get imidiate response 
+        const initialMessage = location.state?.chatbotMessage;
+
+        if (initialMessage) {
+            //cleare state so it doesnt not resend on the refresh 
+            window.history.replaceState({}, document.title);
+
+            const triggerAutoSend = async () => {
+                setShowTitle(false); 
+
+                await autoSubmit(initialMessage);
+            };
+
+            triggerAutoSend();
+        }
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
+// whne get state from home page it will auto send it to Gemini
+    const autoSubmit = async (prompt) => {
+        
+        const API = import.meta.env.VITE_API_URL;
+        try {
+            const response = await fetch(`${API}/api/getChat`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt: prompt, history: [] }),
+            });
+
+            const data = await response.json();
+            const userMsg = { text: prompt, sender: 'user' };
+            setMessages([userMsg]);
+            const botMsg = { text: data.data, sender: 'bot' };
+            setMessages(prev => [...prev, botMsg]);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
 
         const handleSubmit = async () => {
 
@@ -65,7 +91,7 @@ const mainChatBot = () =>{
                
             } catch (error) {
                 console.error('Error:', error);
-                // Handle errors gracefully, e.g., display an error message to the user
+                
             }
         }
     
@@ -86,11 +112,6 @@ const mainChatBot = () =>{
             setShowTitle(false)
         }
     };
-
-   
-
-   
-
 
     return(
         <div className="chatBotWrapper">

@@ -7,12 +7,14 @@ import search from '../../../resources/img/search.png'
 import SplitVisualSection from "../../components/splitSection/splitVisualSection";
 import FullScreenSlider from "../../components/fullScreenSlider/fullScreenSlider";
 import QuickInfoItem from "../../components/quickInfoItem/quickInfoItem";
-import Spinner from "../../components/spinner/Spinner"
-import { useNavigate} from "react-router-dom";
+import Spinner from "../../components/spinner/Spinner";
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useCallback, useEffect, useState } from "react";
 
 const Home = () => {
 
-    // const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState("");
     // const [inputData, setUserData] = useState([]);
     // const [botValue, setBotValue] = useState("");
     // const [showTitle, setShowTitle] = useState(true);
@@ -67,9 +69,26 @@ const Home = () => {
         
     ]
 
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+    })
+
+
+
+
+    const handleAIChat = () => {
+        
+        navigate(`/chatBot`, {
+            state: {
+                chatbotMessage: inputValue
+            }
+        })
+    }
+
   
 
-    const navigate = useNavigate();
 
     return(
         <div className="homeWrapper">
@@ -90,11 +109,11 @@ const Home = () => {
                         className="aiInput"
                         id="prompt"
 
-                        // value={inputValue}
-                        // onChange={(e) => setInputValue(e.target.value)}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Ask me anything!"
                     />
-                    <button><img src={search} alt="search"/></button>
+                    <button onClick={handleAIChat}><img src={search} alt="search"/></button>
                 </div>
             </div>
             <div className="discoverBlock">

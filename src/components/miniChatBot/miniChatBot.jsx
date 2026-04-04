@@ -1,0 +1,152 @@
+import {
+    useCallback,
+    useEffect,
+    useState,
+    useRef
+}
+    from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+
+import './miniChatBot.css'
+import Button from "../../components/Tools/button/button";
+import floatingIcon from '../../../resources/img/floatingIcon.png'
+
+
+const miniChatBot = () => {
+
+    const navigate = useNavigate();
+    const [inputValue, setInputValue] = useState("");
+    const [inputData ,setUserData] = useState([]);
+    const [botValue, setBotValue] = useState("");
+    const [showTitle, setShowTitle] = useState(true);
+    const [botResponse, setBotResponse] = useState([])
+    const [messages, setMessages] = useState([])
+    const [show, setShow] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const [showHint, setShowHint] = useState(true);
+    const chatEndRef = useRef(null);
+
+
+    useEffect(() => {
+        chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+
+        if(isOpen && messages.length === 0){
+            const timer = setTimeout(() => {
+                const greeting = {
+                    text: "Hi! I'm your Welsh Heritage Assistant. How can I help you today?",
+                    sender: 'bot'
+                };
+                setMessages([greeting])
+            }, 500);
+
+            return () => clearTimeout(timer);
+        }
+    },[messages,isOpen])
+
+    const toggleChat = () =>{
+        setIsOpen(!isOpen);
+        setShowHint(false);
+    }
+
+    const handleSubmit = async () => {
+
+        const userPrompt = inputValue;
+
+        setUserData(prev => [...prev, userPrompt]);
+        setInputValue("");
+
+        const API = import.meta.env.VITE_API_URL;
+        try {
+            const response = await fetch(`${API}/api/getChat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ prompt: userPrompt, history: [] }),
+            });
+
+            const data = await response.json();
+            console.log(data)
+            const botMessage = data.data;
+            console.log(botMessage)
+
+            const userMsg = { text: userPrompt, sender: 'user' };
+            setMessages(prev => [...prev, userMsg]);
+
+            // Simulate/Fetch Bot Response
+            const botMsg = { text: botMessage, sender: 'bot' };
+            setMessages(prev => [...prev, botMsg]);
+            // setBotResponse(prevRes => [...prevRes, botMessage])
+
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    
+
+    const handleSend = () => {
+        console.log(botValue)
+        if (inputValue.trim() !== "") {
+            handleSubmit()
+        }
+    };
+
+    return (
+        <div className="chatContainer">
+            {showHint  && !isOpen && (
+                <div className="ai-hint-popup">
+                    <p>I’m here to help — if you’d like any recommendation or advice, just let me know</p>
+                    <button className="close-hint" onClick={() => setShowHint(false)}>x</button>
+                </div>
+            )}
+            {isOpen && (
+
+                <div className='miniChatbotWrapper' >
+                    <div className="headerMiniChatBlock">
+                        <p class="miniTitleText">Ask me anything!</p>
+                    </div>
+                    <div className="mainChatbotSection">
+                        <div className="mainChatBotContent">
+                            {messages.map((msg, index) => (
+                                <div key={index} className={`mini-message-wrapper ${msg.sender}`}>
+                                    <div className={msg.sender === 'user' ? 'mini-user-message' : 'mini-bot-message'}>
+                                        {msg.text}
+                                    </div>
+                                </div>
+                            ))}
+                            <div ref={chatEndRef} />
+                        </div>
+                        <div className="inputSearchMiniDiv">
+                            <input type="text"
+                                className="miniPromptInput"
+                                id="prompt"
+
+                                value={inputValue}
+                                onChange={(e) => setInputValue(e.target.value)}
+                                placeholder="Type a prompt..."
+                            />
+                            <Button 
+                                type="submit" 
+                                onClick={handleSend} 
+                                text="Send" 
+                                style={{ width: 93, height: 43, margin: 0, backgroundColor: "#82181A", borderRadius: 25}}  
+                            />
+                        </div>
+                    </div>
+
+                </div>
+            )}
+
+            <div 
+                tabIndex="1"
+                className={`chat-toggle-btn ${isOpen ? 'active' : '' }`}
+                onClick = {() => setIsOpen(!isOpen)}
+            >
+                <img className='miniAIChatBotIcon' src={floatingIcon} alt="AI mini chatbot icon"/>
+            </div>
+        </div>
+    )
+}
+
+export default miniChatBot
