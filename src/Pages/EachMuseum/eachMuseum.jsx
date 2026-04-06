@@ -27,9 +27,6 @@ const googleAPI = import.meta.env.VITE_API_KEY
 
 const EachMuseum = () => {
    
-
- 
-
     const {id} = useParams();
     const [museumData, setMuseumData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -57,8 +54,6 @@ const EachMuseum = () => {
 
         setVisibleCount(prevCount => prevCount + 6);
     }
-
-   
 
     if (loading) return <div style={{padding: 100}}><Spinner /></div>;
     if (!museumData) return <div style={{ padding: 100 }}>Museum Not Found!</div>

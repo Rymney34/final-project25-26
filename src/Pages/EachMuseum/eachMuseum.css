@@ -27,6 +27,7 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
     word-break: break-word;
+    text-align: center;
 }
 
 .openingHours{
@@ -46,6 +47,12 @@
 }
 .openingTimePara{
     margin: 5px 0 10px 0;
+}
+.museumFirstInfo{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .locationInfo{
@@ -309,7 +316,7 @@ body:has(.modalBackdrop){
 
 .rightBottomMuseumImportantBlock {
     width: 600px;
-    height: 400px;
+    
 }
 
 .museumMapLocationWrapper{

@@ -41,7 +41,7 @@ const SingleCardMuseum = (museum,index) => {
                         <h3>{museumTitle}</h3>
                     </div>
                     <div className="h4Location">   
-                        <h4>Location:{location}</h4>
+                        <h4>Location: {location}</h4>
                     </div>
                 </div>
             </div>

@@ -17,6 +17,7 @@ import EachMuseum from './Pages/EachMuseum/eachMuseum.jsx'
 import Login from './Pages/login/Login.jsx';
 import Register from './Pages/register/Register.jsx';
 import ProtectedRoute from './components/Tools/protectedRoute/protected.route.jsx';
+import ProfileSettings from './Pages/profileSettings/profileSettings.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -82,6 +83,12 @@ function App() {
 
                     path="/allMuseums"
                     element={<AllMuseums/>}
+                  />
+
+                  <Route
+
+                    path="/profileSettings"
+                    element={<ProfileSettings />}
                   />
                 </Route>
               </Route>

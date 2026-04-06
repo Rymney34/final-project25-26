@@ -69,6 +69,7 @@ export async function tryRefresh(onTokenRefreshed) {
 }
 // logout frontedn requesting logout from the backend and then exporting it 
 export async function logout(){
+  localStorage.removeItem("token")
   await fetch(`${API}/api/logout`, {
   method: "POST",
   credentials: "include",

@@ -4,9 +4,6 @@
     padding-top: 15px;
 }
 
-
-
-
 .singleCardMuseumWrapper:hover {
     background-color: rgba(255, 255, 255, 0.197);
     cursor: pointer;
@@ -14,7 +11,6 @@
     width: 215px;
     height: 326px;
     padding-top: 15px;
-
 }
 
 .singleCardMuseumContent{
@@ -30,6 +26,7 @@
     border-radius: 100px;
     width: 205px;
     height: 200px;
+    object-fit: cover;
 }
 
 .cardContent{
@@ -49,6 +46,7 @@
     width: 100%;
     margin-bottom: 5px;
     margin: 20px 3px 0 3px;
+    text-align: center;
 
 }
 .cardContent h4 {
