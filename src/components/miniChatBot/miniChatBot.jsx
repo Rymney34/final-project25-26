@@ -18,8 +18,6 @@ const miniChatBot = () => {
     const [inputValue, setInputValue] = useState("");
     const [inputData ,setUserData] = useState([]);
     const [botValue, setBotValue] = useState("");
-    const [showTitle, setShowTitle] = useState(true);
-    const [botResponse, setBotResponse] = useState([])
     const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
     const [isOpen, setIsOpen] = useState(false);
@@ -104,7 +102,9 @@ const miniChatBot = () => {
 
                 <div className='miniChatbotWrapper' >
                     <div className="headerMiniChatBlock">
+                        <div style={{margin: 20}}> </div>
                         <p class="miniTitleText">Ask me anything!</p>
+                        <button style={{color: "white", right: 20, backgroundColor:"var(--red-color)"}} onClick={() => setIsOpen(false)}>X</button>
                     </div>
                     <div className="mainChatbotSection">
                         <div className="mainChatBotContent">

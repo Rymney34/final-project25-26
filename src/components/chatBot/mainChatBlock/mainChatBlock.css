@@ -20,7 +20,7 @@
 
 .titleWrapperChat{
     height: 100px;
-    margin-top: 50px;
+    margin-top: 60px;
 }
 
 .titleContainerAnimation{
@@ -56,7 +56,7 @@
     flex-direction: column;
     align-items: flex-end;
     width: 80%;
-    min-height: 60vh;
+    min-height: 58vh;
     margin: 0px 0 10px 0;
     
 }
@@ -102,7 +102,9 @@
     align-items: center;
     justify-content: center;
     gap:14px;
-   
+    color: white;
+    margin: 0  0 20px 0;
+    
 }
 
 .promptInput{
@@ -119,4 +121,38 @@
     margin: 5px 0 10px 0;
 }
 
+.previewContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 5px;
+    height: 75px;
+}
 
+.previewItem img {
+    width: 90px;
+    height: 75px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.previewItem img:hover{
+   transform: scale(1.4);
+}
+
+.fileContainer {
+    display: flex;
+    gap: 8px;
+    margin-top: 5px;
+    
+}
+
+.fileCard {
+    background: #f1f1f1;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+.actualMessageImage{
+    width: 90%;
+    border-radius: 20px;
+}

@@ -10,6 +10,7 @@ import "./mainChatBlock.css";
 const mainChatBot = () =>{
 
     const [inputValue, setInputValue] = useState("");
+    const [files, setFiles] = useState([]);
     const [inputData ,setUserData] = useState([]);
     const [botValue, setBotValue] = useState("");
     const [showTitle, setShowTitle] = useState(true);
@@ -17,6 +18,7 @@ const mainChatBot = () =>{
     const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
     const chatEndRef = useRef(null);
+    const fileInputRef = useRef(null)
 // getting state from previous locaiton 
     const location = useLocation();
 
@@ -59,21 +61,42 @@ const mainChatBot = () =>{
         }
     };
 
-        const handleSubmit = async () => {
+        const handleSubmit = async (userPrompt) => {
 
-            const userPrompt = inputValue;
+            // const userPrompt = inputValue;
 
-            setUserData(prev => [...prev, userPrompt]);
+            const userMsg = {
+                text: userPrompt,
+                files: files,
+                sender: 'user'
+            }
+
+            setMessages(prev => [...prev, userMsg])
+            // setUserData(prev => [...prev, userPrompt]);
             setInputValue(""); 
 
-            const API = import.meta.env.VITE_API_URL;;
+            const convertedFiles = await Promise.all(
+                files.map(async (f) => ({
+                    base64: await toBase64(f.file),
+                    mimeType: f.type
+                }))
+            )
+
+            setFiles([])
+
+            const API = import.meta.env.VITE_API_URL;
+
             try {
                 const response = await fetch(`${API}/api/getChat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ prompt: userPrompt, history: [] }),
+                    body: JSON.stringify({ 
+                        prompt: userPrompt, 
+                        files: convertedFiles,
+                        history: [] 
+                    }),
                 });
 
                 const data = await response.json();
@@ -81,8 +104,6 @@ const mainChatBot = () =>{
                 const botMessage = data.data;
                 console.log(botMessage)
                
-                const userMsg = { text: userPrompt, sender: 'user' };
-                setMessages(prev => [...prev, userMsg]);
 
                 // Simulate/Fetch Bot Response
                 const botMsg = { text: botMessage, sender: 'bot' };
@@ -106,12 +127,41 @@ const mainChatBot = () =>{
     }
   
     const handleSend = () => {
-        console.log(botValue)
-        if (inputValue.trim() !== "") {
-            handleSubmit()
+
+        const finalPrompt = (inputValue.trim() === "" && files.length > 0)
+            ? "Describe this image or help me with it"
+            : inputValue;
+
+        if (inputValue.trim() !== "" || files.length > 0) {
+            handleSubmit(finalPrompt)
             setShowTitle(false)
         }
     };
+
+    const handleFileChange = (e) => {
+        const selectedFiles = Array.from(e.target.files);
+
+        const mappedFiles = selectedFiles.map(file => ({
+            file,
+            preview: URL.createObjectURL(file),
+            type: file.type
+        }));
+
+        setFiles(prev => [...prev, ...mappedFiles])
+    }
+
+    const toBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result.split(",")[1]);
+            reader.onerror = reject;
+        })
+    }
+
+    const openFilePicker = () =>{
+        fileInputRef.current.click();
+    }
 
     return(
         <div className="chatBotWrapper">
@@ -125,22 +175,26 @@ const mainChatBot = () =>{
                 
                     
                     <div className="mainChatBlock">
-                   
-                    
-                        {/* {inputData.map((message, index) => (
-                            <div key={`user-${index}`} className="user-message">{message}</div>
-                            
-                        ))}
-                        {botResponse.map((response, index) => (
-                            <div className="botResWrapper">
-                                <div key={`bot-${index}`} className="bot-message">{response}</div>
-                            </div>
-                        
-                        ))} */}
+
                         {messages.map((msg, index) => (
                             <div key={index} className={`message-wrapper ${msg.sender}`}>
                                 <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
-                                    {msg.text}
+                                    {msg.text && <p>{msg.text}</p>}
+
+                                    <div className="fileContainer">
+                                        {msg.files?.map((f,i) => (
+                                            <div key={i}> 
+                                                {f.type.startsWith("image/") ? (
+                                                    <img className="actualMessageImage" src={f.preview} alt="upload image" />
+                                                ) : (
+                                                        <div className='fileCard'>
+                                                            {f.file?.name || "file"}
+                                                        </div>
+                                                    )
+                                                }
+                                            </div>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -152,16 +206,42 @@ const mainChatBot = () =>{
                     e.preventDefault();
                     handleSend
                 }}>
+                    <div className='previewContainer'>
+                        {files.map((f,i) => (
+                            <div key={i} className='previewItem'>
+                                {f.type.startsWith("image/") ? (
+                                    <img  src={f.preview} alt="preview image"/>
+                                ) : (
+                                    <div className='fileCard'>
+                                        {f.file.name}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+
+                    </div>
                     <div className="inputSearchDiv">
-                        <input type="text" 
-                        className="promptInput" 
-                        id="prompt"
                         
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
-                        placeholder="Type a prompt..."
+                        <button style={{borderRadius: 20}}type='button' onClick={openFilePicker}>
+                            <b>+</b>
+                        </button>
+                        <input type="text"
+                            className="promptInput"
+                            id="prompt"
+
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value)}
+                            placeholder="Type a prompt..."
                         />
-                    <Button type="submit" onClick={handleSend} text="Send" style={{ width: 113, height: 53, backgroundColor: "#82181A", borderRadius: 25}}  />
+                        <input 
+                            type="file"
+                            ref={fileInputRef}
+                            style={{display: "none"}}
+                            onChange={handleFileChange}
+                            
+                        />
+
+                        <Button type="submit" onClick={handleSend} text="Send" style={{ width: 113, height: 53, color: "white", backgroundColor: "#82181A", borderRadius: 25}}  />
                     </div>
                 </form> 
             </div>

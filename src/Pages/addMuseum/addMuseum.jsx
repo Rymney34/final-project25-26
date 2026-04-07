@@ -267,7 +267,7 @@ const addMuseum = () => {
                                                                     component="div"
                                                                 />
                                                             </div>
-                                                            {values.virtualTours.length > 1 && (
+                                                            {values.virtualTours.length >= 1 && (
                                                                 <button
                                                                     type="button"
                                                                     onClick={() => remove(index)}
