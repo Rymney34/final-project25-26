@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import {useLocation} from 'react-router-dom';
 import Button from "../../Tools/button/button";
-
+import Spinner from "../../spinner/Spinner.jsx";
 
 import "./mainChatBlock.css";
 
@@ -14,6 +14,7 @@ const mainChatBot = () =>{
     const [inputData ,setUserData] = useState([]);
     const [botValue, setBotValue] = useState("");
     const [showTitle, setShowTitle] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [botResponse, setBotResponse] = useState([])
     const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
@@ -40,7 +41,44 @@ const mainChatBot = () =>{
         }
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
-// whne get state from home page it will auto send it to Gemini
+
+    const formatMessage = (msg) => {
+        if(msg.sender === 'user') return <p>{msg.text}</p>
+
+        const locationRegex = /\[LOCATION:(.*?)\]/;
+        const match = msg.text.match(locationRegex);
+
+        if(match){
+            const address = match[1];
+            const cleanText = msg.text.replace(locationRegex, '').trim();
+            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+
+            return (
+                <>
+                    {cleanText && <p>{cleanText}</p>}
+                    <div className="map-bubble-link" style={{
+                        marginTop: '8px',
+                        padding: '10px',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        borderRadius: '8px',
+                        border: '2px solid rgba(255,255,255, 0.2)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                        <a href={mapUrl} target='_blank' rel="noreferre" style={{color: '#4285F4', fontWeight: 'bold', textDecoration: 'none'}}>
+                            📍 View on Google Maps
+                        </a>
+
+                    </div>
+                </>
+            )
+        }
+        return <p>{msg.text}</p>
+    }
+
+
+// when get state from home page it will auto send it to Gemini
     const autoSubmit = async (prompt) => {
         
         const API = import.meta.env.VITE_API_URL;
@@ -61,6 +99,7 @@ const mainChatBot = () =>{
         }
     };
 
+    //submiting value  and sending it to backend 
         const handleSubmit = async (userPrompt) => {
 
             // const userPrompt = inputValue;
@@ -74,6 +113,7 @@ const mainChatBot = () =>{
             setMessages(prev => [...prev, userMsg])
             // setUserData(prev => [...prev, userPrompt]);
             setInputValue(""); 
+            setLoading(true)
 
             const convertedFiles = await Promise.all(
                 files.map(async (f) => ({
@@ -95,7 +135,7 @@ const mainChatBot = () =>{
                     body: JSON.stringify({ 
                         prompt: userPrompt, 
                         files: convertedFiles,
-                        history: [] 
+                        history: getHistory()
                     }),
                 });
 
@@ -114,18 +154,18 @@ const mainChatBot = () =>{
                 console.error('Error:', error);
                 
             }
+            finally{
+                setLoading(false)
+            }
         }
-    
-    const ChatHistory = () => {
-
-        return (
-            <>
-                <div className="user-message">{inputValue}</div>
-                <div className="bot-message">{botResponse}</div>
-            </>
-        )
+    //getting user and bot cahting history - previous texts 
+    const getHistory = () => {
+        return messages.map(msg => ({
+            role: msg.sender === 'user' ? 'user' : 'model',
+            parts: [{ text: msg.text }]
+        }))
     }
-  
+  //calling submmit fucniton and extra rules in case image is sent
     const handleSend = () => {
 
         const finalPrompt = (inputValue.trim() === "" && files.length > 0)
@@ -138,6 +178,7 @@ const mainChatBot = () =>{
         }
     };
 
+    //function to track file change and if files are added 
     const handleFileChange = (e) => {
         const selectedFiles = Array.from(e.target.files);
 
@@ -146,10 +187,10 @@ const mainChatBot = () =>{
             preview: URL.createObjectURL(file),
             type: file.type
         }));
-
+        //setting file to array adding new to previous
         setFiles(prev => [...prev, ...mappedFiles])
     }
-
+    //converter function AI only support base64 format images 
     const toBase64 = (file) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -158,7 +199,7 @@ const mainChatBot = () =>{
             reader.onerror = reject;
         })
     }
-
+    //func that helps to open file picker 
     const openFilePicker = () =>{
         fileInputRef.current.click();
     }
@@ -175,12 +216,13 @@ const mainChatBot = () =>{
                 
                     
                     <div className="mainChatBlock">
-
+                    //mapping over array of requseted and resposne from user side +  //responses  +  //displaying files in case are added
                         {messages.map((msg, index) => (
                             <div key={index} className={`message-wrapper ${msg.sender}`}>
                                 <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
-                                    {msg.text && <p>{msg.text}</p>}
 
+                                    {msg.text && formatMessage(msg)}
+                                
                                     <div className="fileContainer">
                                         {msg.files?.map((f,i) => (
                                             <div key={i}> 
@@ -198,6 +240,17 @@ const mainChatBot = () =>{
                                 </div>
                             </div>
                         ))}
+                        {loading && (
+                            <div className='messageWrapper bot'>
+                                <div className='bot-message'>
+                                    <div >
+                                        <Spinner width={100}/>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        )}
                         <div ref={chatEndRef} />
 
                     </div>

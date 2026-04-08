@@ -88,7 +88,10 @@
 
 .bot-message {
     max-width: 50%;
+    width: 60vw;
     word-wrap: break-word;
+    white-space: pre-wrap;
+    font-family: inherit;
     color: black;
     text-align: left;
     padding: 20px;

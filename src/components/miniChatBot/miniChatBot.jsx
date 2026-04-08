@@ -41,11 +41,20 @@ const miniChatBot = () => {
         }
     },[messages,isOpen])
 
+    //getting user and bot cahting history - previous texts 
+    const getHistory = () => {
+        return messages.map(msg => ({
+            role: msg.sender === 'user' ? 'user' : 'model',
+            parts: [{ text: msg.text }]
+        }))
+    }
+
+
     const toggleChat = () =>{
         setIsOpen(!isOpen);
         setShowHint(false);
     }
-
+    // sending user input to the backend
     const handleSubmit = async () => {
 
         const userPrompt = inputValue;
@@ -60,7 +69,7 @@ const miniChatBot = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ prompt: userPrompt, history: [] }),
+                body: JSON.stringify({ prompt: userPrompt, history: getHistory() }),
             });
 
             const data = await response.json();
@@ -82,7 +91,7 @@ const miniChatBot = () => {
     }
 
     
-
+    // hanlesend input value 
     const handleSend = () => {
         console.log(botValue)
         if (inputValue.trim() !== "") {

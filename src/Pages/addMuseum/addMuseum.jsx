@@ -11,7 +11,6 @@ import * as Yup from 'yup';
 // import Button from '../Tools/button/button';
 // import Header from '../header/header';
 
-
 const API = import.meta.env.VITE_API_URL;;
 
 const addMuseum = () => {
@@ -25,9 +24,7 @@ const addMuseum = () => {
             alert("Please upload only one image");
             return;
         }
-
         setFile(uploadedFile);
-
         try {
             const formdata = new FormData();
             formdata.append("firstPageImage", uploadedFile);
@@ -53,7 +50,6 @@ const addMuseum = () => {
         }
 
         setFile(uploadedFile);
-
         try {
             const formdata = new FormData();
             formdata.append("museumVideo", uploadedFile);
@@ -62,7 +58,6 @@ const addMuseum = () => {
                 method: "POST",
                 body: formdata
             });
-
             const data = await res.json();
             setUrl(data.url);
             setFieldValue("urlImage", data.url);
@@ -72,8 +67,6 @@ const addMuseum = () => {
     };
 
     const handleSlideImageUpload = async (imageFile, index, setFieldValue) => {
-        
-        
         try {
             const formdata = new FormData();
             formdata.append("slideImage", imageFile);
@@ -93,7 +86,6 @@ const addMuseum = () => {
     };
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-      
         try {
             const res = await axios.post(`${API}/api/createMuseum`, values);
             console.log("Response:", res.data);
@@ -110,8 +102,6 @@ const addMuseum = () => {
 
     return (
         <div className="interfaceWrapper">
-
-          
             {success && (
                 <div className="modal-overlay">
                     <div className="modal">
@@ -152,9 +142,6 @@ const addMuseum = () => {
                             { tour:''}
                         ],
                         map: ''
-
-                        
-                        
                     }}
                     validationSchema={Yup.object({
                         firstPageImage: Yup.string().required('Image is Required'),
@@ -189,11 +176,9 @@ const addMuseum = () => {
                                     <p>Fill all the details below</p>
                                 </div>
                             </div>
-
                             {status?.error && (
                                 <div style={{ color: 'red', marginBottom: '10px' }}>{status.error}</div>
                             )}
-
                             <div className='museumFields'>
                                 <div className='leftFormBlock'>
                                     <label>Main Museum Image</label>
@@ -215,7 +200,7 @@ const addMuseum = () => {
                                     <label>Location</label>
                                     <Field type="text" name="location" placeholder="Location" />
                                     <ErrorMessage className="error" name="location" component="div" />
-                                    <label>Add Google Steet View String</label>
+                                    <label>Add Google Steet View Coordinates</label>
                                     <Field type="text" name="map3d" placeholder="add link of the Google Street View e.g 51.13, 12.2" />
                                     <ErrorMessage className="error" name="map3d" component="div" />
                                     <label>Contact Information</label>
@@ -227,15 +212,13 @@ const addMuseum = () => {
                                     <label>Add 1 Video</label>
                                     <Field type="text" name="video" placeholder="add link to video of the mususeum" />
                                     <ErrorMessage className="error" name="video" component="div" />
-                                    <label>Add Map link</label>
+                                    <label>Add Map Coordinates</label>
                                     <Field type="text" name="map" placeholder="add link to the location on the map of the museum e.g 51.13, 12.2" />
                                     <ErrorMessage className="error" name="map" component="div" />
-
                                     <div
                                         className="virtual-tours-section"
                                         style={{ marginTop: "20px", borderTop: "1px solid #ccc", paddingTop: "10px" }}
                                     >
-                                    
                                         <label style={{ fontWeight: "bold" }}>Virtual Tours</label>
 
                                         <FieldArray name="virtualTours">
@@ -307,7 +290,6 @@ const addMuseum = () => {
                                         </FieldArray>
                                     </div>
 
-                                    
                                 </div>
 
                                 <div className='rightFormBlock'>
@@ -316,7 +298,6 @@ const addMuseum = () => {
                                         {({ push, remove}) => (
                                             <div className='slides-container'>
                                                 <h3>Slides - You Can add multiple slides </h3>
-
                                                 {values.slider && values.slider.length > 0 ? (
                                                     values.slider.map((slide, index) => (
                                                         <div key={index} className="slide-item-card" style={{border: "1px solid white", borderRadius:"25px", padding: 15}}>
