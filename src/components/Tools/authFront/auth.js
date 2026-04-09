@@ -3,15 +3,14 @@ const API = import.meta.env.VITE_API_URL;
 let isRefreshing = false;
 let refreshPromise = null;
 
+// check if this user is auntehticated
 export const isAuthenticated = async (onTokenRefreshed) => {
   const token = localStorage.getItem("token");
 
   if (!token) {
-
     const refreshed = await tryRefresh(onTokenRefreshed); 
     return refreshed;
   }
-
 
   const response = await fetch(`${API}/api/auth/validate`, {
     method: "GET",
@@ -19,7 +18,6 @@ export const isAuthenticated = async (onTokenRefreshed) => {
   });
 
   if (response.ok) return true;
-
 
   if (response.status === 403) {
 
@@ -30,7 +28,7 @@ export const isAuthenticated = async (onTokenRefreshed) => {
   return false;
 };
 
-
+// refreshing token in case it exists 
 export async function tryRefresh(onTokenRefreshed) {
 
   if(isRefreshing) return refreshPromise;

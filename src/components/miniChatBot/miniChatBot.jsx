@@ -24,10 +24,10 @@ const miniChatBot = () => {
     const [showHint, setShowHint] = useState(true);
     const chatEndRef = useRef(null);
 
-
     useEffect(() => {
+        // scroll down when user add message to array 
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-
+        //to show popup message
         if(isOpen && messages.length === 0){
             const timer = setTimeout(() => {
                 const greeting = {
@@ -36,7 +36,6 @@ const miniChatBot = () => {
                 };
                 setMessages([greeting])
             }, 500);
-
             return () => clearTimeout(timer);
         }
     },[messages,isOpen])
@@ -48,7 +47,6 @@ const miniChatBot = () => {
             parts: [{ text: msg.text }]
         }))
     }
-
 
     const toggleChat = () =>{
         setIsOpen(!isOpen);
@@ -89,8 +87,6 @@ const miniChatBot = () => {
             console.error('Error:', error);
         }
     }
-
-    
     // hanlesend input value 
     const handleSend = () => {
         console.log(botValue)
@@ -108,7 +104,6 @@ const miniChatBot = () => {
                 </div>
             )}
             {isOpen && (
-
                 <div className='miniChatbotWrapper' >
                     <div className="headerMiniChatBlock">
                         <div style={{margin: 20}}> </div>
@@ -143,10 +138,8 @@ const miniChatBot = () => {
                             />
                         </div>
                     </div>
-
                 </div>
             )}
-
             <div 
                 tabIndex="1"
                 className={`chat-toggle-btn ${isOpen ? 'active' : '' }`}

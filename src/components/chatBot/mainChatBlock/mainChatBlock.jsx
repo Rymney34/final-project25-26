@@ -2,16 +2,15 @@ import { useEffect, useState, useRef } from 'react';
 import {useLocation} from 'react-router-dom';
 import Button from "../../Tools/button/button";
 import Spinner from "../../spinner/Spinner.jsx";
-
 import "./mainChatBlock.css";
-
 
 // Main Chatbot funciton 
 const mainChatBot = () =>{
 
+    const API = import.meta.env.VITE_API_URL;
     const [inputValue, setInputValue] = useState("");
     const [files, setFiles] = useState([]);
-    const [inputData ,setUserData] = useState([]);
+    const [userData ,setUserData] = useState([]);
     const [botValue, setBotValue] = useState("");
     const [showTitle, setShowTitle] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -24,24 +23,40 @@ const mainChatBot = () =>{
     const location = useLocation();
 
     useEffect(() => {
+        //fetching user data in this case userID
+        const fetchUserData = async () => {
+            const token = localStorage.getItem('token');
+
+            try {
+                const response = await fetch(`${API}/api/getUser`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                const userData = await response.json();
+                //setting fetched data to state
+                setUserData(userData._id);
+            }
+            catch (error) {
+                console.error("Auth Failed")
+            }
+        }
+        fetchUserData();
+
         // on load send it data to AI so user would get imidiate response 
         const initialMessage = location.state?.chatbotMessage;
 
         if (initialMessage) {
-            //cleare state so it doesnt not resend on the refresh 
+            //clear state so it doesnt not resend on the refresh 
             window.history.replaceState({}, document.title);
-
             const triggerAutoSend = async () => {
                 setShowTitle(false); 
-
                 await autoSubmit(initialMessage);
             };
-
             triggerAutoSend();
         }
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
+    //format message to make it perfect for the map represenation 
     const formatMessage = (msg) => {
         if(msg.sender === 'user') return <p>{msg.text}</p>
 
@@ -135,7 +150,9 @@ const mainChatBot = () =>{
                     body: JSON.stringify({ 
                         prompt: userPrompt, 
                         files: convertedFiles,
-                        history: getHistory()
+                        // history: getHistory()
+                        history: getHistory(),
+                        userId: userData
                     }),
                 });
 
@@ -203,7 +220,7 @@ const mainChatBot = () =>{
     const openFilePicker = () =>{
         fileInputRef.current.click();
     }
-
+    //mapping over array of requseted and resposne from user side +  //responses  +  //displaying files in case are added
     return(
         <div className="chatBotWrapper">
             <div className="chatBotBlock">
@@ -216,7 +233,7 @@ const mainChatBot = () =>{
                 
                     
                     <div className="mainChatBlock">
-                    //mapping over array of requseted and resposne from user side +  //responses  +  //displaying files in case are added
+  
                         {messages.map((msg, index) => (
                             <div key={index} className={`message-wrapper ${msg.sender}`}>
                                 <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
