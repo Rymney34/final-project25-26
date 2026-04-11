@@ -99,15 +99,15 @@ const miniChatBot = () => {
         <div className="chatContainer">
             {showHint  && !isOpen && (
                 <div className="ai-hint-popup">
-                    <p>I’m here to help — if you’d like any recommendation or advice, just let me know</p>
                     <button className="close-hint" onClick={() => setShowHint(false)}>x</button>
+                    <p>I’m here to help — if you’d like any recommendation or advice, just let me know</p>
                 </div>
             )}
             {isOpen && (
                 <div className='miniChatbotWrapper' >
                     <div className="headerMiniChatBlock">
                         <div style={{margin: 20}}> </div>
-                        <p class="miniTitleText">Ask me anything!</p>
+                        <p className="miniTitleText">Ask me anything!</p>
                         <button style={{color: "white", right: 20, backgroundColor:"var(--red-color)"}} onClick={() => setIsOpen(false)}>X</button>
                     </div>
                     <div className="mainChatbotSection">
@@ -134,7 +134,7 @@ const miniChatBot = () => {
                                 type="submit" 
                                 onClick={handleSend} 
                                 text="Send" 
-                                style={{ width: 93, height: 43, margin: 0, backgroundColor: "#82181A", borderRadius: 25}}  
+                                style={{ width: 93,  margin: 0, backgroundColor: "#82181A", borderRadius: 25}}  
                             />
                         </div>
                     </div>

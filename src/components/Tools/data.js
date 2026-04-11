@@ -1,0 +1,18 @@
+export const images = [
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/cardiffNM.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/Amgueddfa%27r_Lleng_Rhufeinig.jpeg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/snowd1.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/aberg.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/cardiffMuseum.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/another.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/castle.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/coal.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/maritime.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/meetyrCastle.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/prembokeDock.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/regmintalMuseum.png",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/saveimage.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/swans.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/tenby.jpg",
+    "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/tf.jpg",
+]

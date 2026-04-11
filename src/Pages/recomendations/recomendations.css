@@ -1,0 +1,48 @@
+.recomendaitonMainContent{
+    /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.recomendationsWrapper{
+    padding-top: 100px;
+}
+
+.recomendationTitle{
+    
+}
+
+.recExamples{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.recExamples ul{
+    width: 59%;
+    font-weight: 500;
+    list-style: circle;
+    word-break: break-all;
+}
+
+.recExamples li {
+    margin: 15px;
+}
+
+.mainRecomendationContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.mainRecomendationContent p{
+    font-weight: bold;
+    
+    
+}

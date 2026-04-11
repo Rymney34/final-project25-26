@@ -18,11 +18,17 @@ const mainChatBot = () =>{
     const [messages, setMessages] = useState([])
     const [show, setShow] = useState("");
     const chatEndRef = useRef(null);
+    const chatStartRef = useRef(null);
     const fileInputRef = useRef(null)
 // getting state from previous locaiton 
     const location = useLocation();
 
     useEffect(() => {
+
+        
+      
+        
+        
         //fetching user data in this case userID
         const fetchUserData = async () => {
             const token = localStorage.getItem('token');
@@ -222,7 +228,7 @@ const mainChatBot = () =>{
     }
     //mapping over array of requseted and resposne from user side +  //responses  +  //displaying files in case are added
     return(
-        <div className="chatBotWrapper">
+        <div className="chatBotWrapper" ref={chatStartRef} >
             <div className="chatBotBlock">
                 <div className='titleWrapperChat'>
                     {showTitle ? <div class="titleContainerAnimation">

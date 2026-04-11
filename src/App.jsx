@@ -5,7 +5,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import MainChatBot from './components/chatBot/mainChatBlock/mainChatBlock'
 import libraryHub from './Pages/libraryHub/libraryHub.jsx';
-import allEvents from './Pages/events/allEvents.jsx';
+import AllEvents from './Pages/events/allEvents.jsx';
 import WebApp from './webApp.jsx'
 import Home from './Pages/Home/home.jsx';
 import About from './Pages/about/about.jsx';
@@ -16,8 +16,9 @@ import AllMuseums from './Pages/allMuseums/allMuseums.jsx';
 import EachMuseum from './Pages/EachMuseum/eachMuseum.jsx'
 import Login from './Pages/login/Login.jsx';
 import Register from './Pages/register/Register.jsx';
+import Recomendations from './Pages/recomendations/recomendations.jsx';
 import ProtectedRoute from './components/Tools/protectedRoute/protected.route.jsx';
-import ProfileSettings from './Pages/profileSettings/profileSettings.jsx';
+import ProfileSettings from './Pages/profileSettings/profileSettings.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -89,6 +90,16 @@ function App() {
 
                     path="/profileSettings"
                     element={<ProfileSettings />}
+                  />
+                  <Route
+
+                    path="/recomendations"
+                    element={<Recomendations />}
+                  />
+                  <Route
+
+                    path="/allEvents"
+                    element={<AllEvents/>}
                   />
                 </Route>
               </Route>

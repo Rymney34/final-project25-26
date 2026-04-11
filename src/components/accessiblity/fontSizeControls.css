@@ -1,0 +1,14 @@
+.font-small {font-size: 14px}
+.font-medium {font-size: 18px}
+.font-huge {font-size: 32px}
+
+
+#textSizeButtons button{
+    background: var(--red-color);
+}
+.accessibility-toolbar button.active{
+    background-color: var("--red-color");
+    color: white;
+    border-radius: 4px;
+}
+

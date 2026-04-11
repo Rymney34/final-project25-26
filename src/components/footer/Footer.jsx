@@ -19,7 +19,7 @@ function Footer() {
 
         <div className="footer__column">
           <h4 className="footer__title">Quick Links</h4>
-          <ul className="footer__list">
+          <ul id="footerLinks" className="footer__list">
             <li><Link to="/About">About</Link></li>
             <li><Link to="/ourPortfolio">Chat with AI</Link></li>
             <li><Link to="/AboutUs">Recomendations</Link></li>

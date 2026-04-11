@@ -4,7 +4,6 @@
   color: #cbd5e1;
 }
 
-/* GRID */
 .footer__container {
   max-width: 1200px;
   margin: 0 auto;
@@ -14,7 +13,6 @@
   gap: 48px;
 }
 
-/* BRAND */
 .footer__brand {
   display: flex;
   flex-direction: column;
@@ -34,21 +32,20 @@
 }
 
 .footer__description {
-  font-size: 14px;
+  
   line-height: 1.6;
   max-width: 280px;
   color: #cbd5e1;
 }
 
-/* TITLES */
 .footer__title {
-  font-size: 14px;
+  
   font-weight: 600;
   margin-bottom: 16px;
   color: #cbd5e1;
 }
 
-/* LISTS */
+
 .footer__list {
   list-style: none;
   padding: 0;
@@ -56,12 +53,11 @@
 }
 
 .footer__list li {
-  font-size: 14px;
+  /* font-size: 14px; */
   margin-bottom: 10px;
   color: #cbd5e1;
 }
 
-/* LINKS (очень важно) */
 .footer a {
   color: #cbd5e1;
   text-decoration: none;
@@ -72,14 +68,13 @@
   color: #ffffff;
 }
 
-/* CONTACT */
+
 .footer__list--contact li {
   display: flex;
   gap: 8px;
   cursor: default;
 }
 
-/* BOTTOM BAR */
 .footer__bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
   padding: 20px;
@@ -99,7 +94,7 @@
   gap: 24px;
 }
 
-/* RESPONSIVE */
+
 @media (max-width: 900px) {
   .footer__container {
     grid-template-columns: 1fr 1fr;

@@ -1,8 +1,9 @@
 import "./profileSettings.css";
 import EachEventItem from '../../components/eachEventItem/eachEventItem.jsx'
 import Button from "../../components/Tools/button/button.jsx"
-import { useEffect, useState, } from "react";
 import { logout } from "../../components/Tools/authFront/auth.js";
+import FontSizeControls from "../../components/accessiblity/fontSizeControls.jsx";
+import { useEffect, useState, } from "react";
 import { useNavigate} from 'react-router-dom';
 
 const profileSettings = () => {
@@ -51,6 +52,7 @@ const profileSettings = () => {
                 <div className="accessibility">
                     <div className="accessibilityTitle">
                         <h3>Accessibility Settings:</h3>
+                        <FontSizeControls/>
                     </div>
                 </div>
                 <div className="logoutWrapper">
