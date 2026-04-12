@@ -84,7 +84,7 @@ const Home = () => {
                 <h2>Discover Welsh Heritage</h2>
                 <div className="discoverItemWrapper">
                     <QuickInfoItem img={location} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" onClick={() => { navigate("/allMuseums") }} />
-                    <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Events" />
+                    <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Events" onClick={() => navigate("/allEvents")} />
                     <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => {navigate("/about")}}/>
                 </div>
             </div>

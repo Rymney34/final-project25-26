@@ -1,5 +1,6 @@
 import "./allEvents.css";
 import EachEventItem from '../../components/eachEventItem/eachEventItem.jsx'
+import Spinner from "../../components/spinner/Spinner.jsx";
 import {
     useCallback,
     useEffect,
@@ -29,7 +30,15 @@ const allEvents = () => {
             <div className="allEventsDiv">
                 <h2>All Events</h2>
                 <div className="eventsList">
-
+                    {!events || events.length === 0 ? (
+                        <Spinner/> 
+                    ) : (
+                        events.map((event, index) => (
+                            // <EachEventItem event={event} index={index} />
+                            !event ? <Spinner key={index} /> : <EachEventItem event={event} index={index} /> 
+                            // <EachEventItem event={event} index={index}/>
+                        ))
+                    )}
                 </div>
             </div>
         </div>

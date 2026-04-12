@@ -1,16 +1,28 @@
 .eachEventWrapper{
     width: 90vw;
-    height: 30vh;
+    min-height: 25vh;
     display: flex;
     gap: 30px;
+    padding: 20px;
+    
 }
+
 .eachEventWrapper:hover{
     border-radius: 25px;
-    background-color: rgb(rgba(255, 255, 255, 0.296));
+    /* background-color: rgb(rgba(255, 255, 255, 0.296)); */
+    background-color: rgba(255, 255, 255, 0.296);
+    cursor: pointer;
 }
 .eventRealImage{
     width: 550px;
     height: 300px;
+    border-radius: 25px;
+}
+
+.imageEventDiv{
+    display: flex;
+    align-items: center;
+    justify-content: column;
 }
 .eventMainContent{
     display: flex;

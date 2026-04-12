@@ -1,18 +1,27 @@
 .eachLibraryWrapper{
     width: 90vw;
-    height: 30vh;
+    min-height: 25vh;
     display: flex;
     gap: 30px;
+    transition: 500ms ease-in-out;
 }
 .eachLibraryWrapper:hover{
     border-radius: 25px;
-    background-color: rgb(rgba(255, 255, 255, 0.296));
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.296);
+}
+.imageLibraryDiv{
+    display: flex;
+    align-items: center;
 }
 .libraryRealImage{
     width: 550px;
     height: 300px;
+    border-radius: 25px;
+    padding: 20px;
 }
 .libraryMainContent{
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 5px;

@@ -1,6 +1,18 @@
 import { NavLink } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 import './offScreen.css'
 const offScreenMenu = ({isOpen, closeMenu}) =>{
+
+    const token = localStorage.getItem("token")
+    let isAdmin = false;
+    if(token){
+        try{
+            const decoded = jwtDecode(token);
+            isAdmin = decoded.isAdmin === true
+        }catch(err){
+            console.log("error Invalid token")
+        }
+    }
     return(
         <div className={`offScreenMenu ${isOpen ? "active" : ""}`}>
             <div className='videoDiv'>
@@ -11,9 +23,12 @@ const offScreenMenu = ({isOpen, closeMenu}) =>{
             <div className='menuList'>
                 <ul id='navMenu'>
                     <li><NavLink to="/home" className={({isActive}) => isActive ? "activeLink" : ""} onClick={closeMenu}>Home</NavLink></li>
-                    <li><NavLink to="/addMuseum" className={({ isActive }) => isActive ? "activeLink" : ""} onClick={closeMenu}>AddMuseum</NavLink></li>
+                    {isAdmin && (
+                        <li><NavLink to="/addMuseum" className={({ isActive }) => isActive ? "activeLink" : ""} onClick={closeMenu}>AddMuseum</NavLink></li>
+                    )}
+                   
                     <li><NavLink to="/allMuseums" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>All Museums</NavLink></li>
-                    <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Library</NavLink></li>
+                    <li><NavLink to="/libraries" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Library</NavLink></li>
                     <li><NavLink to="/chatBot" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>AI Chatbot</NavLink></li>
                     <li><NavLink to="/profileSettings" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Profile Settings</NavLink></li>
                     <li><NavLink to="/recomendations" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Recomendations</NavLink></li>

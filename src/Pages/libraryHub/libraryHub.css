@@ -11,4 +11,20 @@
 .toolList{
     margin: 0 10px 0 0;
     margin: 20px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px
+}
+
+.libraryHubWrapper{
+    padding-top: 80px;
+}
+
+.libraryHubDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

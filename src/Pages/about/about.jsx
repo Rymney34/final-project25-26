@@ -2,8 +2,11 @@ import "./about.css";
 import Button from "../../components/Tools/button/button"
 import FullScreenSlider from "../../components/fullScreenSlider/fullScreenSlider";
 import FAQSection from "../../components/fqsSection/faqSection";
+import { useNavigate, useParams } from 'react-router-dom';
 
 const About = () => {
+
+    const navigate = useNavigate();
 
     const images = [
         "https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/regmintalMuseum.png",
@@ -54,7 +57,7 @@ const About = () => {
                 <div className="AIDivContent">
                     <div className="leftAiDiv">
                         <p>You could ask AI to recomend you what would be better place for you to visit today based on your mood and feelings, and much more all you need is to chat with it!</p>
-                        <Button text="Find Out More!" style={{ backgroundColor: "var(--red-color)", color: "white", width: "300px"}}/>
+                        <Button text="Find Out More!" onClick={() =>  navigate("/recomendations") } style={{ backgroundColor: "var(--red-color)", color: "white", width: "300px"}}/>
                     </div>
                     <div className="rightAIDiv">
                         

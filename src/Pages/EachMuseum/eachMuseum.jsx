@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import './eachMuseum.css'
 import locationImage from '../../../resources/img/location_on.png';
@@ -9,7 +9,7 @@ import planVisit from '../../../resources/img/planVisit.png';
 import phone from '../../../resources/img/phone.png';
 import time from '../../../resources/img/time.png';
 import accessibility from '../../../resources/img/accessibility.png';
-import QuickInfoItem from '../../components/quickInfoItem/quickInfoItem';
+import QuickInfoItem from '../../components/quickInfoItem/quickInfoItem.jsx';
 import { ImportantMuseumInfo } from '../../components/importantMuseumInfo/importantMuseumInfo';
 import EachMuseumSlider from '../../components/eachMuseumSlider/eachMuseumSlider';
 import axios from "axios";
@@ -26,7 +26,7 @@ const API = import.meta.env.VITE_API_URL;
 const googleAPI = import.meta.env.VITE_API_KEY
 
 const EachMuseum = () => {
-   
+    const navigate = useNavigate()
     const {id} = useParams();
     const [museumData, setMuseumData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -34,12 +34,11 @@ const EachMuseum = () => {
     const [visibleCount, setVisibleCount] = useState(6);
 
     useEffect(() => {
+        //getting each musseum from backend db
         const getEachMuseum = async () => {
             try{
                 const response = await axios.get(`${API}/api/getEachMuseum/${id}`)
                 setMuseumData(response.data);
-                console.log(response);
-                console.log(response.data)
                 setLoading(false);
             }
             catch(error){
@@ -50,6 +49,7 @@ const EachMuseum = () => {
         getEachMuseum()
     },[id]);
 
+    //loadmore button
     const loadMore = () => {
 
         setVisibleCount(prevCount => prevCount + 6);
@@ -61,7 +61,7 @@ const EachMuseum = () => {
     const { firstPageImage, accessiblityInfo, contactInfo, location, map, map3d, museumTitle, openingTime, video, virtualTours, slider} = museumData
 
     const displayedTours = virtualTours.slice(0, visibleCount)
-
+    //url for better video representation
     const getEmbedUrl = (url) => {
         if(!url) return "";
 
@@ -108,9 +108,9 @@ const EachMuseum = () => {
                     <h2>Plan Your Visit</h2>
                 </div>
                 <div className="planYourVisitContent">
-                    <QuickInfoItem img={locationImage} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" />
-                    <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Event" />
-                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => { navigate("/about") }} />
+                        <QuickInfoItem img={locationImage} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" onClick={() => navigate("/allMuseums")} />
+                        <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Event" onClick={() => navigate("/allEvents") } />
+                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => navigate("/about") } />
                 </div>
             </div>
             <div className='museumContentSlider'>
@@ -121,9 +121,6 @@ const EachMuseum = () => {
                         <h2> Exhibits Highligths Video</h2>
                     </div>
                     <div className='videoBlockWrapper'>
-                        {/* <video>
-                            <source src={video} />
-                        </video> */}
                         <iframe 
                             
                             className="videoMuseumContent"

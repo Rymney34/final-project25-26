@@ -4,7 +4,7 @@ import './App.css'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import MainChatBot from './components/chatBot/mainChatBlock/mainChatBlock'
-import libraryHub from './Pages/libraryHub/libraryHub.jsx';
+import LibraryHub from './Pages/libraryHub/libraryHub.jsx';
 import AllEvents from './Pages/events/allEvents.jsx';
 import WebApp from './webApp.jsx'
 import Home from './Pages/Home/home.jsx';
@@ -100,6 +100,11 @@ function App() {
 
                     path="/allEvents"
                     element={<AllEvents/>}
+                  />
+                  <Route
+
+                    path="/libraries"
+                    element={<LibraryHub />}
                   />
                 </Route>
               </Route>

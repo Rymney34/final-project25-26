@@ -2,7 +2,7 @@ import "./quickInfoItem.css";
 import { Link } from "react-router-dom";
 import Button from "../Tools/button/button";
 
-function quickInfoItem(props) {
+function QuickInfoItem(props) {
 
     return (
         <div className="itemBlockWrapper">
@@ -16,4 +16,4 @@ function quickInfoItem(props) {
     );
 }
 
-export default quickInfoItem;
+export default QuickInfoItem;

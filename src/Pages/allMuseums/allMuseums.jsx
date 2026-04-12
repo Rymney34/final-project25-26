@@ -36,9 +36,7 @@ const AllMuseums = () => {
             <div className="allMusuemsDisplay">
                 {museumsData.length > 0 ? (
                     museumsData.map((museum, index)=> (
-                
                         <SingleCardMuseum index={index} museum={museum}/>
-                              
                     ))
                 ) : (
                     <Spinner/>
