@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import './offScreen.css'
 const offScreenMenu = ({isOpen, closeMenu}) =>{
-
+    //to check if user is admin based on their token
     const token = localStorage.getItem("token")
     let isAdmin = false;
     if(token){
@@ -26,7 +26,6 @@ const offScreenMenu = ({isOpen, closeMenu}) =>{
                     {isAdmin && (
                         <li><NavLink to="/addMuseum" className={({ isActive }) => isActive ? "activeLink" : ""} onClick={closeMenu}>AddMuseum</NavLink></li>
                     )}
-                   
                     <li><NavLink to="/allMuseums" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>All Museums</NavLink></li>
                     <li><NavLink to="/libraries" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>Library</NavLink></li>
                     <li><NavLink to="/chatBot" className={({ isActive }) => isActive ? "activeLink" : ""}  onClick={closeMenu}>AI Chatbot</NavLink></li>
@@ -35,8 +34,6 @@ const offScreenMenu = ({isOpen, closeMenu}) =>{
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? "activeLink" : ""} onClick={closeMenu}>About & FAQs</NavLink></li>
                 </ul>
             </div>
-            
-        
         </div>
     )
 }

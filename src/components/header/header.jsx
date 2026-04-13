@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import logo from '../../../resources/img/logo.png'
 import OffScreenMenu from '../menu/offScreen'
+import { useNavigate, useParams } from 'react-router-dom';
 import './header.css'
+import { handleKeyPress } from "../accessiblity/handleKeyPressed";
+import { NavLink } from 'react-router-dom'
 
 function Header() {
     const [count, setCount] = useState(0)
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate()
 
     const toggleMenu = () => {
         setIsOpen(prev => !prev);
@@ -18,17 +22,20 @@ function Header() {
                 
                     <div className='navDiv'>
                         <div className='logoBlock'>
-                            <a href="/home" className={({ isActive }) => isActive ? "activeLink" : ""}>
-                                <img tabindex="0" className="logoClass" alt='logo' src={logo} />
-                            </a>
+                            <NavLink to="/home" className={({ isActive }) => isActive ? "activeLink" : ""}  onKeyDown={(e) => handleKeyPress(e,()=> navigate("/home"))}>
+                                <img className="logoClass" alt='logo' src={logo} />
+                            </NavLink>
                         </div>
                         <div className='navBlocks'>
-                            <div tabindex="0" className='navMenu'>
+                            <div  className='navMenu'>
                                 <div className="menuTag" > Menu</div>
                                 <nav>
-                                    <div className={`ham-menu ${isOpen ? "active" : ""}`} onClick={
+                                    <div tabIndex="0" className={`ham-menu ${isOpen ? "active" : ""}`} onClick={
+                                       
                                         toggleMenu
-                                    }>
+                                    }
+                                        onKeyDown={(e) => handleKeyPress(e, toggleMenu)}
+                                    >
                                         <span></span>
                                         <span></span>
                                         <span></span>
@@ -37,7 +44,8 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                    <OffScreenMenu isOpen={isOpen} closeMenu={()=> setIsOpen(false)} />
+                    {!isOpen ? <></> : <OffScreenMenu isOpen={isOpen} closeMenu={() => setIsOpen(false)} /> }
+                    
             </div>
             
         </header >

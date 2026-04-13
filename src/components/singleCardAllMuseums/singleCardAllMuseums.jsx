@@ -8,14 +8,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import './singleCardAllMuseums.css'
 import Button from "../../components/Tools/button/button";
+import { handleKeyPress } from "../accessiblity/handleKeyPressed";
 
 
 const SingleCardMuseum = (museum,index) => {
 
     const navigate = useNavigate();
-
- 
-
     useEffect(() => { 
         
     })
@@ -24,18 +22,18 @@ const SingleCardMuseum = (museum,index) => {
 
         navigate(`/eachMuseum/${id}`)
     }
-
-
+    //accesibility feature so user could open museum by click enter on the keyboard
+   
 
     const {firstPageImage, museumTitle, location, _id} = museum.museum
-        
-    console.log(_id)
 
-    
     return (
-        <div key={index} onClick={() => eachMuseum(_id)} className='singleCardMuseumWrapper' >
+        <div tabIndex='0' key={index} onClick={() => handleKeyPress(eachMuseum(_id))}  onKeyDown={(e) => handleKeyPress(e, ()=> eachMuseum(_id))} className='singleCardMuseumWrapper' >
             <div className="singleCardMuseumContent" >
-                <img src={firstPageImage} className="eachMuseumImage" alt="museum Image"/>
+                <div className="eachMuseumImageDiv">   
+                    <img src={firstPageImage} className="eachMuseumImage" alt="museum Image" />
+                </div>
+                
                 <div className="cardContent">
                     <div>
                         <h3>{museumTitle}</h3>

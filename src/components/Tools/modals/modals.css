@@ -1,0 +1,27 @@
+.modalOverlay{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.467);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  
+}
+
+.modalBox{
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 20px;
+    border: 1px black;
+    border-radius: 25px;
+    text-align: center;
+    align-items: center;
+    width: 280px;
+    color: white;
+    box-shadow: 0 10px 25px rgb(0,0,0,0.5);
+    
+}

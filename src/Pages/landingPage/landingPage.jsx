@@ -1,4 +1,4 @@
-import "./home.css";
+
 import sliderTest from '../../../resources/img/sliderTest.png'
 import location from '../../../resources/img/location_on.png'
 import calendar from '../../../resources/img/calendar.png'
@@ -11,11 +11,16 @@ import Spinner from "../../components/spinner/Spinner";
 import { useNavigate, useParams } from 'react-router-dom';
 import {images} from '../../components/Tools/data.js'
 import { useCallback, useEffect, useState } from "react";
+import LoginModal from '../../components/Tools/modals/modals.jsx'
+import Button from "../../components/Tools/button/button.jsx";
+import { NavLink } from "react-router-dom";
+import logo from '../../../resources/img/logo.png'
 
-
-const Home = () => {
+const LandingPage = () => {
 
     const [inputValue, setInputValue] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const section = [
         
@@ -42,20 +47,34 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if(isModalOpen){
+            document.body.style.overflow='hidden';
+        }
+        else{
+            document.body.style.overflow = 'unset';
+        }
 
-    })
-
-    const handleAIChat = () => {
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
         
-        navigate(`/chatBot`, {
-            state: {
-                chatbotMessage: inputValue
-            }
-        })
-    }
+    },[isModalOpen])
 
     return(
         <div className="homeWrapper">
+            <header>
+                <div className='headerWrapper'>
+                    <div className='navDiv'>
+                        <div className='logoBlock'>
+                            <NavLink href="/landingPage" className={({ isActive }) => isActive ? "activeLink" : ""}>
+                                <img className="logoClass" alt='logo' src={logo} />
+                            </NavLink>
+                        </div>
+                        <Button style={{ backgroundColor: "green" , width: 120 , height: 50 }} text="Login" onClick={() => navigate("/login")} />
+                    </div>
+                    
+                </div>
+            </header >
             <div className="sliderWrapper">
                 {images.length > 0 ? (
                     <FullScreenSlider images={images} />
@@ -63,7 +82,6 @@ const Home = () => {
                     <div style={{ padding: "0 150 0 0" }}> 
                             <Spinner  />
                     </div>
-                  
                 )}
             </div>
             <div className="aiBlockWrapper">
@@ -72,20 +90,17 @@ const Home = () => {
                     <input type="text"
                         className="aiInput"
                         id="prompt"
-
-                        value={inputValue}
-                        onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Ask me anything!"
                     />
-                    <button onClick={handleAIChat}><img src={search} alt="search"/></button>
+                    <button onClick={() => {setIsModalOpen(true)}}><img src={search} alt="search"/></button>
                 </div>
             </div>
             <div className="discoverBlock">
                 <h2>Discover Welsh Heritage</h2>
                 <div className="discoverItemWrapper">
-                    <QuickInfoItem img={location} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" onClick={() => { navigate("/allMuseums") }} />
-                    <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Events" onClick={() => navigate("/allEvents")} />
-                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => {navigate("/about")}}/>
+                    <QuickInfoItem img={location} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" onClick={() => setIsModalOpen(true)} />
+                    <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Events" onClick={() => setIsModalOpen(true)} />
+                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => setIsModalOpen(true)}/>
                 </div>
             </div>
             <div className="aboutWalesMuseumsWrapper">
@@ -93,8 +108,12 @@ const Home = () => {
                     <SplitVisualSection sections={section} />
                 </div>
             </div>
+            <LoginModal 
+            isOpen={isModalOpen}
+            onClose={()=> setIsModalOpen(false)}
+            />
         </div>
     )
 }
 
-export default Home;
+export default LandingPage;

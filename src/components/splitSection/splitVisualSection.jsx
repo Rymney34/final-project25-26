@@ -30,7 +30,7 @@ const SplitVisualSection = ({ sections = [],styles,  }) => {
               }`}
             >
               
-              <img className="imageSection" tabindex="0" style={styles} src={section.image} alt={section.title} />
+              <img className="imageSection" tabIndex="0" style={styles} src={section.image} alt={section.title} />
             </div>
           </div>
         );

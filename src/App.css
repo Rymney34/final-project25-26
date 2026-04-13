@@ -118,3 +118,8 @@ h1,h2{
 .error{
   color: red;
 }
+
+.logoIcon{
+  width: 10px;
+  height: 10px;
+}

@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-
+import { useCallback, useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 
 import './eachMuseum.css'
@@ -20,18 +19,25 @@ import GoogleMap from "../../components/Tools/googleMap/googleMap";
 import GoogleStreetView from "../../components/Tools/streetView/streetView.jsx";
 import {
     LoadScript,
+    useJsApiLoader,
 } from "@react-google-maps/api";
 
 const API = import.meta.env.VITE_API_URL;
 const googleAPI = import.meta.env.VITE_API_KEY
 
 const EachMuseum = () => {
+    const refBottom = useRef(null)
     const navigate = useNavigate()
     const {id} = useParams();
     const [museumData, setMuseumData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [activeTour, setActiveTour] = useState(null);
     const [visibleCount, setVisibleCount] = useState(6);
+
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: googleAPI
+    })
 
     useEffect(() => {
         //getting each musseum from backend db
@@ -76,7 +82,7 @@ const EachMuseum = () => {
     return(
         
         <div className='eacMuseumWrapper'>
-            <LoadScript googleMapsApiKey={googleAPI} onLoad={() => console.log('Maps API has loaded.')}>   
+            
             <div className='firstMuseumBlockInfo'>
                 <div className='imageLeftBlock'>
                     <img src={firstPageImage} alt="museum cover page"/>
@@ -99,7 +105,7 @@ const EachMuseum = () => {
                                 {location}
                             </address>
                         </div>
-                        <Button text="Find Out More" style={{ margin: "50px 0 0 0", fontSize: 24, width: 200, height: 66, borderRadius: 50, color: "white", backgroundColor: "var(--red-color)"}}/>
+                            <Button text="Find Out More" onClick={() => refBottom.current?.scrollIntoView({ behavior: "smooth" })} style={{ margin: "50px 0 0 0", fontSize: 24,  height: 66, borderRadius: 50, color: "white", backgroundColor: "var(--red-color)"}}/>
                     </div>
                 </div>
             </div>
@@ -110,7 +116,7 @@ const EachMuseum = () => {
                 <div className="planYourVisitContent">
                         <QuickInfoItem img={locationImage} title="Location" text="Browse all our museums, galleries and historic sites" btnText="Find Out More!" onClick={() => navigate("/allMuseums")} />
                         <QuickInfoItem img={calendar} title="What's On" text="Find event, exhibitions and workshops near you" btnText="View Event" onClick={() => navigate("/allEvents") } />
-                    <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => navigate("/about") } />
+                        <QuickInfoItem img={planVisit} title="Plan Your Visit" text="Accessibility, FAQ's and museums information" btnText="Visitor Info" onClick={() => navigate("/about") } />
                 </div>
             </div>
             <div className='museumContentSlider'>
@@ -184,19 +190,19 @@ const EachMuseum = () => {
                
             </div>
              ) : " "}
-           
+            {isLoaded ? <div>
                 <div className='googleStreetViewWrapper'>
                     <div className='googleStreetViewTitle'>
                         <h2>Google Street View (360)</h2>
 
                     </div>
                     <div className="googleStreetContentWrapper">
-                       
+
                         <GoogleStreetView coords={map3d} />
                     </div>
                 </div>
-                
-                <div className='museumLastImportantBlockWrapper'>
+
+                <div ref={refBottom} className='museumLastImportantBlockWrapper'>
                     <div className='museumImportantInfoTitle'>
                         <h2>Contact {museumTitle}</h2>
                     </div>
@@ -204,27 +210,28 @@ const EachMuseum = () => {
                         <div className='leftMuseumImportantBlock'>
                             <ImportantMuseumInfo title="Our location:" icon={locationImage} blockInfo={location} />
                             <ImportantMuseumInfo title="Contact Us:" icon={phone} blockInfo={contactInfo} />
-                            
+
                         </div>
                         <div className='rightMuseumImportantBlock'>
                             <div className='museumMapLocationWrapper'>
-                         
-                                <GoogleMap coords={map}/>
+
+                                <GoogleMap coords={map} />
                             </div>
-                        
+
 
                         </div>
                     </div>
-                
+
                     <div className='bottomMuseumImportantBlock'>
                         <ImportantMuseumInfo title="Opening Hours:" icon={time} blockInfo={openingTime} />
                         <div className="rightBottomMuseumImportantBlock">
                             <ImportantMuseumInfo title="Accessibility:" icon={accessibility} blockInfo={accessiblityInfo} />
                         </div>
-                    
+
                     </div>
-                </div>             
-            </LoadScript >
+                </div>
+          </div>  : <Spinner/>}  
+            
         </div>
     )
 }

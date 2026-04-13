@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./faqSection.css";
+import { handleKeyPress } from "../accessiblity/handleKeyPressed";
 
 const faqs = [
     {
@@ -67,14 +68,17 @@ const FAQSection = () => {
                 <div className="faq-list">
                     {faqs.map((faq, index) => (
                         <div
-                            tabIndex="0"
+                            
+                            
                             key={index}
                             className={`faq-item ${activeIndex === index ? "active" : ""
                                 }`}
                         >
                             <div
+                                tabIndex="0"
                                 className="faq-question"
-                                onClick={() => toggleItem(index)}
+                                onClick={() => handleKeyPress(toggleItem(index))    }
+                                onKeyDown={(e) => handleKeyPress(e, () => toggleItem(index))}
                             >
                                 {faq.question}
                                 <span className="faq-icon">

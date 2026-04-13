@@ -22,13 +22,10 @@ const mainChatBot = () =>{
     const fileInputRef = useRef(null)
 // getting state from previous locaiton 
     const location = useLocation();
+    const hasSentInitial = useRef(false);
 
     useEffect(() => {
 
-        
-      
-        
-        
         //fetching user data in this case userID
         const fetchUserData = async () => {
             const token = localStorage.getItem('token');
@@ -47,20 +44,29 @@ const mainChatBot = () =>{
         }
         fetchUserData();
 
+    }, []);
+    //useEffect for the case of receiving state from the home page 
+    useEffect(() => {
         // on load send it data to AI so user would get imidiate response 
         const initialMessage = location.state?.chatbotMessage;
 
         if (initialMessage) {
+            hasSentInitial.current = true;
             //clear state so it doesnt not resend on the refresh 
             window.history.replaceState({}, document.title);
+
             const triggerAutoSend = async () => {
-                setShowTitle(false); 
+                setShowTitle(false);
                 await autoSubmit(initialMessage);
             };
             triggerAutoSend();
         }
+    }, [])
+    //just to perfomr smooth scroll down
+    useEffect(() => {
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, [messages]);
+    },[messages])
+
 
     //format message to make it perfect for the map represenation 
     const formatMessage = (msg) => {

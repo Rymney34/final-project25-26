@@ -53,6 +53,14 @@
 }
 
 .rightAIDiv{
+    
+    width: 20vw;
+    height: 40vh;
+}
+
+.rightVideo{
     border: 1px solid white;
-    width: 40vw;
+    border-radius: 25px;
+    width: 100%;
+    height: 100%;
 }

@@ -19,6 +19,7 @@ import Register from './Pages/register/Register.jsx';
 import Recomendations from './Pages/recomendations/recomendations.jsx';
 import ProtectedRoute from './components/Tools/protectedRoute/protected.route.jsx';
 import ProfileSettings from './Pages/profileSettings/profileSettings.jsx'
+import LandingPage from './Pages/landingPage/landingPage.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -28,9 +29,14 @@ function App() {
       <Router>
         
         <div>
+         
           <ScrollToTop />
           <Routes>
-
+            <Route
+              path="/landingPage"
+              element={<LandingPage />}
+            />
+            
             <Route
               path="/login"
               element={<Login />}

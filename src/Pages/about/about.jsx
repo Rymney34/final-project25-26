@@ -60,7 +60,9 @@ const About = () => {
                         <Button text="Find Out More!" onClick={() =>  navigate("/recomendations") } style={{ backgroundColor: "var(--red-color)", color: "white", width: "300px"}}/>
                     </div>
                     <div className="rightAIDiv">
-                        
+                        <video className="rightVideo" src='https://museums-welsh-heritage-bucket.s3.eu-north-1.amazonaws.com/general-content/0412.mp4' autoPlay muted loop playsInline>
+
+                        </video>
                     </div>
                 </div>
             </div>

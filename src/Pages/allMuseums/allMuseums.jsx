@@ -10,25 +10,41 @@ const API = import.meta.env.VITE_API_URL;
 
 const AllMuseums = () => {
 
+    
     const [museumsData, setMuseumsData] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(10);
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
+
     const navigate = useNavigate();
     
-    useEffect(() => {
-        const fetchMuseums = async () => {
-            try{
-                const response = await axios.get(`${API}/api/getAllMuseums`);
-
-                setMuseumsData(response.data)
-            }catch(error){
-                console.log('Error in fetching', error)
-            }
+    const fetchMuseums = async (pageNum) => {
+        
+        try {
+            const response = await axios.get(`${API}/api/getAllMuseums?page=${pageNum}&limit=8`);
+            // console.log(response)
+            const newData = response.data.result;
+            setMuseumsData(prev => {const filteredData = newData.filter(newItem => 
+                !prev.some(oldItem => oldItem._id === newItem._id)
+            )
+            return [...prev, ...filteredData]
+            })
+            
+            // setMuseumsData2(prev => [...prev, museumsData])
+            setHasMore(response.data.hasMore);
+        } catch (error) {
+            console.log('Error in fetching', error)
         }
-        fetchMuseums()
+    }
+
+    useEffect(() => {
+        
+        fetchMuseums(1)
     },[])
 
     const loadMore = () => {
-        setVisibleCount(prevCount => prevCount + 5);
+        const nextPage = page + 1;
+        setPage(nextPage);
+        fetchMuseums(nextPage)
     }
 
     return (
@@ -41,14 +57,12 @@ const AllMuseums = () => {
                 ) : (
                     <Spinner/>
                 )}
-                
-                    
+
             </div>
             <div style={{margin: "20px 0px 20px 0px"}}>
-                {visibleCount < museumsData.length && (
+                {hasMore&& (
                     <Button text="Load More" onClick={loadMore} style={{ backgroundColor: "var(--red-color)" }} />
                 )}
-               
             </div>
         </div>
     )

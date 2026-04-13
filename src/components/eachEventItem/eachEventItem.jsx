@@ -4,15 +4,16 @@ import {
     useEffect,
     useState,
     useRef
-}
-    from "react";
+} from "react";
+import { handleKeyPress } from "../accessiblity/handleKeyPressed";
+
 
 
 const eachEvent = (props, index) => {
     const props1 = props.event
     // console.log(props.event)
     return (
-        <div key={index} onClick={() => window.location.href = props1.eventLink} tabindex="0" className="eachEventWrapper">
+        <div key={index} onClick={() => handleKeyPress(window.location.href = props1.eventLink)} onKeyDown={(e) => handleKeyPress(e, () => window.location.href = props1.eventLink)} tabindex="0" className="eachEventWrapper">
             <div className="imageEventDiv">
                 <img className="eventRealImage" src={props1.eventImage} alt="eventCover"/>
             </div>

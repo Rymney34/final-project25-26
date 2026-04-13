@@ -6,10 +6,10 @@ import {
 }
     from "react";
 import { useNavigate, useParams } from 'react-router-dom';
-
 import './miniChatBot.css'
 import Button from "../../components/Tools/button/button";
 import floatingIcon from '../../../resources/img/floatingIcon.png'
+import { handleKeyPress } from "../accessiblity/handleKeyPressed";
 
 
 const miniChatBot = () => {
