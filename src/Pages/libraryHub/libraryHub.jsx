@@ -31,6 +31,7 @@ const libraryHub = () =>{
         <div className="libraryHubWrapper">
             <div className="libraryHubDiv">
                 <h2>Welsh Library & Tools</h2>
+                {/* <CrashOnClick/> */}
                 <div className="toolList">
                     {!libraryItem || libraryItem.length === 0 ? (
                             <Spinner/>

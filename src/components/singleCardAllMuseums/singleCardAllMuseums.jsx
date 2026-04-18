@@ -5,7 +5,8 @@ import {
 }
 from "react";
 import { useNavigate, useParams } from 'react-router-dom';
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css"
 import './singleCardAllMuseums.css'
 import Button from "../../components/Tools/button/button";
 import { handleKeyPress } from "../accessiblity/handleKeyPressed";
@@ -30,8 +31,10 @@ const SingleCardMuseum = (museum,index) => {
     return (
         <div tabIndex='0' key={index} onClick={() => handleKeyPress(eachMuseum(_id))}  onKeyDown={(e) => handleKeyPress(e, ()=> eachMuseum(_id))} className='singleCardMuseumWrapper' >
             <div className="singleCardMuseumContent" >
-                <div className="eachMuseumImageDiv">   
-                    <img src={firstPageImage} className="eachMuseumImage" alt="museum Image" />
+                <div className="eachMuseumImageDiv">
+                        <img effect="blur" threshold={100} src={firstPageImage} className="eachMuseumImage" loading="lazy" alt="museum Image" />
+                    
+                    
                 </div>
                 
                 <div className="cardContent">

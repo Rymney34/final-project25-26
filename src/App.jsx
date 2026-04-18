@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import './App.css'
 import reactLogo from './assets/react.svg'
@@ -20,6 +20,9 @@ import Recomendations from './Pages/recomendations/recomendations.jsx';
 import ProtectedRoute from './components/Tools/protectedRoute/protected.route.jsx';
 import ProfileSettings from './Pages/profileSettings/profileSettings.jsx'
 import LandingPage from './Pages/landingPage/landingPage.jsx';
+import Page404 from './components/errorBoundary/Page404.jsx';
+import ErrorBoundary from './components/errorBoundary/ErrorBoundary.jsx';
+import Spinner from './components/spinner/Spinner.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -27,98 +30,75 @@ function App() {
   return (
    
       <Router>
-        
         <div>
-         
-          <ScrollToTop />
-          <Routes>
-            <Route
-              path="/landingPage"
-              element={<LandingPage />}
-            />
-            
-            <Route
-              path="/login"
-              element={<Login />}
-            />
-
-            <Route
-              path="/register"
-              element={<Register />}
-            />
-            <Route element={<ProtectedRoute/>}>
-                <Route path="/" element={<WebApp />}>
-                  <Route
-                    path="/home"
-                    element={<Home />}
-                  />
-
-                  <Route
-
-                    path="/chatBot"
-                    element={<MainChatBot />}
-                  />
-
-                  <Route
-
-                    path="/events"
-                    element={<allEvents />}
-                  />
-                  <Route
-
-                    path="/libraryHub"
-                    element={<libraryHub/>}
-                  />
-
-                  <Route
-
-                    path="/about"
-                    element={<About/>}
-                  />
-
-                  <Route
-
-                    path="/addMuseum"
-                    element={<AddMuseum />}
-                  />
-                  <Route
-
-                    path="/eachMuseum/:id"
-                    element={<EachMuseum/>}
-                  />
-                  <Route
-
-                    path="/allMuseums"
-                    element={<AllMuseums/>}
-                  />
-
-                  <Route
-
-                    path="/profileSettings"
-                    element={<ProfileSettings />}
-                  />
-                  <Route
-
-                    path="/recomendations"
-                    element={<Recomendations />}
-                  />
-                  <Route
-
-                    path="/allEvents"
-                    element={<AllEvents/>}
-                  />
-                  <Route
-
-                    path="/libraries"
-                    element={<LibraryHub />}
-                  />
+          <Suspense fallback={<Spinner />}>
+            <ScrollToTop />
+            <Routes>
+              <Route
+                path="/landingPage"
+                element={<LandingPage />}
+              />
+              <Route
+                path="/login"
+                element={<Login />}
+              />
+              <Route
+                path="/register"
+                element={<Register />}
+              />
+              <Route element={<ProtectedRoute/>}>
+                  <Route path="/" element={<WebApp />}>
+                    <Route index element={<Navigate to='/home' replace />}  />
+                    <Route
+                      path="/home"
+                      element={<ErrorBoundary><Home /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/chatBot"
+                      element={<ErrorBoundary><MainChatBot /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/about"
+                      element={<About/>}
+                    />
+                    <Route
+                      path="/addMuseum"
+                      element={<ErrorBoundary><AddMuseum /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/eachMuseum/:id"
+                      element={<ErrorBoundary><EachMuseum /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/allMuseums"
+                      element={<ErrorBoundary><AllMuseums /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/profileSettings"
+                      element={<ErrorBoundary><ProfileSettings /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/recomendations"
+                      element={<Recomendations />}
+                    />
+                    <Route
+                      path="/allEvents"
+                      element={<ErrorBoundary><AllEvents /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="/libraries"
+                      element={<ErrorBoundary><LibraryHub /></ErrorBoundary>}
+                    />
+                    <Route
+                      path="*"
+                      element={<Page404 />}
+                    />
+                  </Route>
                 </Route>
-              </Route>
-          </Routes>  
-
+            </Routes>  
+          </Suspense>
         </div>
       </Router>
-
   )
 }
 

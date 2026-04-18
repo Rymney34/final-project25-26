@@ -124,7 +124,7 @@ const EachMuseum = () => {
             </div>
                 {video.length > 0 ? <div className='museumVideoWrapper'>
                     <div className='blockTitle'>
-                        <h2> Exhibits Highligths Video</h2>
+                        <h2> Exhibits Highlights Video</h2>
                     </div>
                     <div className='videoBlockWrapper'>
                         <iframe 

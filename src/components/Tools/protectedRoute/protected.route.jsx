@@ -25,7 +25,7 @@ const ProtectedRoute = () => {
  
   if (authStatus === null) return <Spinner/>;
 
-  if (!authStatus) return <Navigate to="/login" replace />;
+  if (!authStatus) return <Navigate to="/landingPage" replace />;
 
   return <Outlet />;
 };
