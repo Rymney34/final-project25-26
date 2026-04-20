@@ -23,8 +23,8 @@
 }
 
 .logoClassLogin{
-  width: 18vw;
-  height: 8vh;
+  max-width: 25vw;
+  min-height: 0vh
 }
 
 
@@ -116,4 +116,33 @@
 
 #loginForm span{
   color: black;
+}
+
+@media (max-width: 480px) {
+  .logoClassLogin {
+    max-width: 140px;
+    min-height: 50px
+  }
+
+}
+
+@media (max-width: 375px) {
+.logoClassLogin {
+    max-width: 130px;
+    min-height: 45px
+  }
+    .loginForm{
+      padding: 2%;
+    }
+}
+
+@media (max-width: 320px) {
+  .logoClassLogin {
+    max-width: 130px;
+    min-height: 45px
+  }
+
+  .loginForm {
+    padding: 0;
+  }
 }

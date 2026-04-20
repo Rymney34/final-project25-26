@@ -26,3 +26,19 @@
     font-size: 26px;
     margin-bottom: 15px;
 }
+
+@media (max-width: 400px) {
+
+    .itemBlockWrapper {
+        width: 90%;
+
+    }
+}
+
+@media (max-width: 361px) {
+
+    .discoverItemWrapper {
+        width: 100%;
+
+    }
+}

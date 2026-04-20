@@ -12,8 +12,10 @@
 .navDiv{
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 60vw;
+    justify-content: space-between;
+    padding: 0 50px;
+    
+    /* gap: 60vw; */
     height: 100%;
 }
 .logoClass{
@@ -96,3 +98,59 @@ nav{
     top:42%;
     transform: translate(-50%, 50%) rotate(-45deg);
 }
+
+@media (max-width: 975px) {
+
+    .videoDiv{
+        display: none;
+    }
+    .menuList {
+        width: 100vw;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .navDiv {
+        
+    }
+
+    /* .logoClass{
+        visibility: hidden;
+        display: none;
+    } */
+
+    .logoClass {
+        width: 40vw;
+        height: 6vh;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .menuList ul{
+        margin: 0;
+    }
+     
+}
+
+@media (max-width: 375px) {
+
+    .menuList ul li {
+        margin: 0;
+        font-size: 0.8em;
+    }
+    .logoClass{
+        visibility: hidden;
+        display: none;
+    }
+
+       
+}
+
+@media (max-width: 325px) {
+
+   
+}
+

@@ -155,3 +155,89 @@
     width: 90%;
     border-radius: 20px;
 }
+
+@media (max-width: 1200px) {
+
+    .chatBotBlock {
+        width: 85%;
+    }
+    .chatBotBlock form{
+        width: 85%;
+    }
+
+    .mainChatBlock {
+        
+    }
+
+   
+
+    .promptInput {
+        width: 100%;
+        max-width: 500px;
+        font-size: 16px;
+    }
+
+    .titleText {
+        font-size: 2.2em;
+        letter-spacing: 6px;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .chatBotBlock {
+        width: 100%;
+    }
+
+    .chatBotBlock form {
+        width: 90%;
+    }
+
+    .mainChatBlock {
+        width: 90%;
+    }
+
+    .bot-message{
+        width: 80%;
+    }
+
+
+
+    .promptInput {
+        width: 100%;
+        max-width: 500px;
+        font-size: 13px;
+    }
+    .titleWrapperChat {
+        margin-top: 70px;
+        height: 80%;
+    }
+
+    .titleText {
+        font-size: 1.8em;
+        letter-spacing: 6px;
+    }
+}
+
+@media (max-width: 375px) {
+
+    .chatBotBlock form {
+            width: 96%;
+        }
+
+    .promptInput {
+        width: 100%;
+        max-width: 500px;
+        font-size: 13px;
+    }
+
+    .inputSearchDiv{
+        gap: 5px
+    }
+
+    
+    .titleText {
+        font-size: 1.3em;
+        letter-spacing: 6px;
+    }
+}

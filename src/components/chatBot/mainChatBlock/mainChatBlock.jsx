@@ -237,8 +237,8 @@ const mainChatBot = () =>{
         <div className="chatBotWrapper" ref={chatStartRef} >
             <div className="chatBotBlock">
                 <div className='titleWrapperChat'>
-                    {showTitle ? <div class="titleContainerAnimation">
-                        <p class="titleText" >Ask me anything!</p>
+                    {showTitle ? <div className="titleContainerAnimation">
+                        <p className="titleText" >Ask me anything!</p>
                     </div>
                         : <></>}
                 </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo from '../../../resources/img/logo.png'
+import logo from '../../../resources/img/logo.webp'
 import OffScreenMenu from '../menu/offScreen'
 import { useNavigate, useParams } from 'react-router-dom';
 import './header.css'

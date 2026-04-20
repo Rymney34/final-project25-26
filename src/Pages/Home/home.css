@@ -7,13 +7,14 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 400px;
+    min-height: 400px;
 }
 
 .aiBlock{
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    flex-wrap: wrap;
 }
 
 .aiBlock button{
@@ -28,18 +29,18 @@
     transition: 300ms ease-in-out;
 }
 
-.aiBlock button :hover{
+.aiBlock button:hover{
     transform: scale(1.1);
 }
 
 .aiInput{
-    width: 600px;
+    width: 60vw;
     height: 60px;
     border-radius: 30px;
     padding: 0 20px;
     background-color: white;
     color: black;
-    border: 2px rgb(111, 111, 111);
+    border: 2px solid rgb(111, 111, 111);
 }
 
 
@@ -65,4 +66,49 @@
     justify-content: center;
     margin: 0 0 40px;
     align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+
+    .discoverBlock {
+      
+    }
+}
+
+@media (max-width: 768px) {
+
+    .ai-hint-popup{
+        display: none;
+    }
+
+    .chat-toggle-btn{
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .ai-hint-popup {
+        display: none;
+    }
+
+    .chat-toggle-btn {
+        display: none;
+    }
+}
+
+@media (max-width: 455px) {
+
+    .aiBlockWrapper{
+        padding: 20px;
+        text-align: center;
+    }
+
+    .ai-hint-popup {
+        display: none;
+    }
+
+    .chat-toggle-btn {
+        display: none;
+    }
 }

@@ -108,33 +108,35 @@
 
 
   .split-section {
-    padding: 4rem 2rem;
-    gap: 5rem;
+    gap: 1rem;
 
   }
 
   .split-row {
-    gap: 2.5rem;
-
-    width: 100%;
+    gap: 1em;
+    width: 90%;
   }
-
 
   .split-text h2 {
     /* font-size: 2rem; */
 
   }
 
-    .split-text p {
+    .split-text  {
       /* font-size: 0.8rem; */
-
+      
     }
+    
 
+   
   .split-image img {
     height: 380px;
-
     padding: 5px;
   
+  }
+
+  .imageSection{
+    width: 30px;
   }
 
   .split-image-top img {
@@ -199,7 +201,7 @@
 @media (max-width: 480px) {
 
   .split-section {
-    padding: 3rem 1.5rem;
+
 
     gap: 4rem;
   }
