@@ -24,7 +24,6 @@ const API = import.meta.env.VITE_API_URL;
                 console.log("Handle Register")
                 console.log(values);
                 const res = await axios.post(`${API}${API_ENDPOINT}`, values);
-                // console.log("Registration successful:", res.data);
 
                 // navigate("/");
                 if(res.status === 201 || res.status === 200){

@@ -4,11 +4,9 @@ import { useEffect, useState, } from "react";
 
 
 const fontSizeControls = () => {
-
     const API = import.meta.env.VITE_API_URL;
 
     const [fontSizeC, setFontSize] = useState('font-medium')
-   
     const changeGlobalFontSize = (size) => {
         const root = document.documentElement;
         const sizes = {
@@ -27,16 +25,12 @@ const fontSizeControls = () => {
             huge: "55px"
         }
 
-
         root.style.setProperty('--app-font-size', sizes[size])
         root.style.setProperty('--header-font-size', sizes2[size])
         root.style.setProperty('--menu-font-size', sizes3[size])
     }
-   
     useEffect(() => {
-
     }, [])
-
     return (
         <div className={`accessibilityWrapper ${fontSizeC}`}>
             <div className="accessiblity-toolbar">
@@ -62,7 +56,6 @@ const fontSizeControls = () => {
                         A+
                     </button>
                 </div>
-               
             </div>
         </div>
     )

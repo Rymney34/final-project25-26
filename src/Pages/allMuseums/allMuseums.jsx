@@ -5,20 +5,15 @@ import './allMuseums.css'
 import Button from "../../components/Tools/button/button";
 import SingleCardMuseum from "../../components/singleCardAllMuseums/singleCardAllMuseums";
 import Spinner from "../../components/spinner/Spinner";
-
 const API = import.meta.env.VITE_API_URL;
 
 const AllMuseums = () => {
-
-    
     const [museumsData, setMuseumsData] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-
     const navigate = useNavigate();
     
     const fetchMuseums = async (pageNum) => {
-        
         try {
             const response = await axios.get(`${API}/api/getAllMuseums?page=${pageNum}&limit=8`);
             // console.log(response)
@@ -28,25 +23,20 @@ const AllMuseums = () => {
             )
             return [...prev, ...filteredData]
             })
-            
-            // setMuseumsData2(prev => [...prev, museumsData])
             setHasMore(response.data.hasMore);
         } catch (error) {
             console.log('Error in fetching', error)
         }
     }
-
     useEffect(() => {
         
         fetchMuseums(1)
     },[])
-
     const loadMore = () => {
         const nextPage = page + 1;
         setPage(nextPage);
         fetchMuseums(nextPage)
     }
-
     return (
         <div className='eachMuseumWrapper'>
             <div className="allMusuemsDisplay">
@@ -57,7 +47,6 @@ const AllMuseums = () => {
                 ) : (
                     <Spinner/>
                 )}
-
             </div>
             <div style={{margin: "20px 0px 20px 0px"}}>
                 {hasMore&& (

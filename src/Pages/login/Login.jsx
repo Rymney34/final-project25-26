@@ -14,9 +14,6 @@ const API_ENDPOINT = "/api/login";
 
 const API = import.meta.env.VITE_API_URL;
 
-
-
-
   //to clear error from the validation from db
     const ClearErrorOnChange = () => {
       const { status, setStatus, values } = useFormikContext();
@@ -75,9 +72,7 @@ const API = import.meta.env.VITE_API_URL;
       return (
         <div id="formLogin"> 
               <div>
-              
                   <Formik
-                
                       initialValues={{ email: '', password: '' }}
                       validationSchema = {Yup.object({
                           email: Yup.string()
@@ -88,12 +83,8 @@ const API = import.meta.env.VITE_API_URL;
                                       .required('Required Field'),
                       })}
                       onSubmit={handleSubmit}
-                      >
-                      
+                  >
                               {({ isSubmitting, status}) => (
-                                  // style={{border: "1px solid black", marginTop: '0px', }}
-                                
-                                  
                           <Form id="loginForm" >
                             <ClearErrorOnChange/>
                               <div id="loginf" className="loginForm" >
@@ -107,7 +98,6 @@ const API = import.meta.env.VITE_API_URL;
                                       {status.error}
                                   </div>
                               )}
-                                 
                               <Field type="email" name="email" id="email" placeHolder="Email" />
                               <ErrorMessage className="errors" name="email" component="div" />
                               <div id="passwordInput">

@@ -128,31 +128,24 @@ const mainChatBot = () =>{
 
     //submiting value  and sending it to backend 
         const handleSubmit = async (userPrompt) => {
-
             // const userPrompt = inputValue;
-
             const userMsg = {
                 text: userPrompt,
                 files: files,
                 sender: 'user'
             }
-
             setMessages(prev => [...prev, userMsg])
             // setUserData(prev => [...prev, userPrompt]);
             setInputValue(""); 
             setLoading(true)
-
             const convertedFiles = await Promise.all(
                 files.map(async (f) => ({
                     base64: await toBase64(f.file),
                     mimeType: f.type
                 }))
             )
-
             setFiles([])
-
             const API = import.meta.env.VITE_API_URL;
-
             try {
                 const response = await fetch(`${API}/api/getChat`, {
                     method: 'POST',
@@ -172,13 +165,10 @@ const mainChatBot = () =>{
                 console.log(data)
                 const botMessage = data.data;
                 console.log(botMessage)
-               
-
                 // Simulate/Fetch Bot Response
                 const botMsg = { text: botMessage, sender: 'bot' };
                 setMessages(prev => [...prev, botMsg]);
                 // setBotResponse(prevRes => [...prevRes, botMessage])
-               
             } catch (error) {
                 console.error('Error:', error);
                 
@@ -242,16 +232,11 @@ const mainChatBot = () =>{
                     </div>
                         : <></>}
                 </div>
-                
-                    
                     <div className="mainChatBlock">
-  
                         {messages.map((msg, index) => (
                             <div key={index} className={`message-wrapper ${msg.sender}`}>
                                 <div className={msg.sender === 'user' ? 'user-message' : 'bot-message'}>
-
                                     {msg.text && formatMessage(msg)}
-                                
                                     <div className="fileContainer">
                                         {msg.files?.map((f,i) => (
                                             <div key={i}> 
@@ -276,12 +261,9 @@ const mainChatBot = () =>{
                                         <Spinner width={100}/>
                                     </div>
                                 </div>
-
-
                             </div>
                         )}
                         <div ref={chatEndRef} />
-
                     </div>
                     
                 <form onSubmit={(e) => {
@@ -300,7 +282,6 @@ const mainChatBot = () =>{
                                 )}
                             </div>
                         ))}
-
                     </div>
                     <div className="inputSearchDiv">
                         
@@ -310,7 +291,6 @@ const mainChatBot = () =>{
                         <input type="text"
                             className="promptInput"
                             id="prompt"
-
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                             placeholder="Type a prompt..."
@@ -320,9 +300,7 @@ const mainChatBot = () =>{
                             ref={fileInputRef}
                             style={{display: "none"}}
                             onChange={handleFileChange}
-                            
                         />
-
                         <Button type="submit" onClick={handleSend} text="Send" style={{ width: 113, height: 53, color: "white", backgroundColor: "#82181A", borderRadius: 25}}  />
                     </div>
                 </form> 

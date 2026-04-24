@@ -11,7 +11,6 @@ import Button from "../../components/Tools/button/button";
 import floatingIcon from '../../../resources/img/floatingIcon.png'
 import { handleKeyPress } from "../accessiblity/handleKeyPressed";
 
-
 const miniChatBot = () => {
 
     const navigate = useNavigate();

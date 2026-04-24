@@ -145,11 +145,8 @@ const EachMuseum = () => {
             {displayedTours && displayedTours.length > 0 ? (
             <div className='virtualMuseumToursWrapperDiv'>
             
-
-               
                 <div className='virtualMuseumTitle'>
                     <h2>Virtual Museum Tour</h2>
-
                 </div>
                 <div className='allMuseumVirtualTours'>
                     
