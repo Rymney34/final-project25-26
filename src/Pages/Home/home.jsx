@@ -63,7 +63,6 @@ const Home = () => {
                     <div style={{ padding: "0 150 0 0" }}> 
                             <Spinner  />
                     </div>
-                  
                 )}
             </div>
             <div className="aiBlockWrapper">

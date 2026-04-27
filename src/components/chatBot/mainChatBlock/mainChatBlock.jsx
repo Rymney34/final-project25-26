@@ -67,7 +67,6 @@ const mainChatBot = () =>{
         chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
     },[messages])
 
-
     //format message to make it perfect for the map represenation 
     const formatMessage = (msg) => {
         if(msg.sender === 'user') return <p>{msg.text}</p>

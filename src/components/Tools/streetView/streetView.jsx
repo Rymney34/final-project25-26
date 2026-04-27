@@ -17,10 +17,6 @@ export default function GoogleStreetView({coords}) {
         height: "650px",
         width: "1000px"
     };
-    const center = {
-        lat: 54.364442,
-        lng: 18.643173
-    };
     return (
             <div >
                 <GoogleMap mapContainerStyle={containerStyle} center={position} zoom={10}>
@@ -32,7 +28,5 @@ export default function GoogleStreetView({coords}) {
                     />
                 </GoogleMap>
             </div>
-
-       
     )
 }
