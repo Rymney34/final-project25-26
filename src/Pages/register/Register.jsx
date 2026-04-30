@@ -15,6 +15,7 @@ const API = import.meta.env.VITE_API_URL;
       
 
         const [showPassword, setShowPassword] = useState(false);
+        const [showSuccessModal, setShowSuccessModal] = useState(false);
         const navigate = useNavigate();
 
 
@@ -27,7 +28,8 @@ const API = import.meta.env.VITE_API_URL;
 
                 // navigate("/");
                 if(res.status === 201 || res.status === 200){
-                    navigate("/login");
+                    setShowSuccessModal(true);
+                    // navigate("/login");
                 }
 
             } catch (error) {
@@ -44,8 +46,26 @@ const API = import.meta.env.VITE_API_URL;
             setShowPassword((prev) => !prev)
         }
 
+        const handleCloseSuccessModal = () =>{
+            setShowSuccessModal(false);
+            navigate("/login");
+        }
+
         return(
             <div className="regWarpper">
+                {showSuccessModal && (
+                    <div className='modalOverlay'>
+                        <div className='modalBox'>
+                            <h2>
+                                Registration Successful
+                            </h2>
+                            <p>Your account has been created successfully</p>
+                            <button onClick={handleCloseSuccessModal}>
+                                Ok
+                            </button>
+                        </div>
+                    </div>
+                )}
                 <div className='regFormInner'>
                     <Formik
                         initialValues={{ 

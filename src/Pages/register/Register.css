@@ -75,3 +75,43 @@
   cursor: pointer;
   transition: background 0.3s;
 }
+
+.modalOverlay{
+  position: fixed;
+  top:0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgb(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+ 
+}
+.modalBox{
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  
+}
+
+.modalBox h2 {
+  color: black;
+}
+
+.modalBox p {
+  color: black;
+}
+.modalBox button{
+  background-color: #55d55d;
+  margin-top: 15px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.modalBox button:hover {
+  transform: scale(1.1);
+}

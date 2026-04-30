@@ -162,6 +162,24 @@ const mainChatBot = () =>{
 
                 const data = await response.json();
                 console.log(data)
+
+                if(!response.ok){
+                    if(response.status === 503){
+                        const botMsg = {
+                            text: data.message || "The Ai is currently busy. Please send your message again",
+                            sender: "bot"
+                        }
+                        setMessages(prev => [...prev, botMsg]);
+                        return;
+                    }
+                    const botMsg ={
+                        text: data.message || "somthing went wrong. Please try again ",
+                        sender: "bot"
+                    }
+
+                    setMessages(prev => [...prev, botMsg]);
+                    return;
+                }
                 const botMessage = data.data;
                 console.log(botMessage)
                 // Simulate/Fetch Bot Response
