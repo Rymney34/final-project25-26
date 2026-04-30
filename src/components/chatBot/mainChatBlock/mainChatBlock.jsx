@@ -7,7 +7,7 @@ import "./mainChatBlock.css";
 // Main Chatbot funciton 
 const mainChatBot = () =>{
 
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_UR || "";
     const [inputValue, setInputValue] = useState("");
     const [files, setFiles] = useState([]);
     const [userData ,setUserData] = useState([]);
@@ -144,7 +144,7 @@ const mainChatBot = () =>{
                 }))
             )
             setFiles([])
-            const API = import.meta.env.VITE_API_URL;
+            const API = import.meta.env.VITE_API_URL || "";
             try {
                 const response = await fetch(`${API}/api/getChat`, {
                     method: 'POST',

@@ -4,7 +4,7 @@ import { useEffect, useState, } from "react";
 
 
 const fontSizeControls = () => {
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_URL || "";
 
     const [fontSizeC, setFontSize] = useState('font-medium')
     const changeGlobalFontSize = (size) => {

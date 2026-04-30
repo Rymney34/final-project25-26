@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 // import Button from '../Tools/button/button';
 // import Header from '../header/header';
 
-const API = import.meta.env.VITE_API_URL;;
+const API = import.meta.env.VITE_API_URL || " ";
 
 const addMuseum = () => {
     const navigate = useNavigate();

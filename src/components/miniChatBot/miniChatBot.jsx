@@ -59,7 +59,7 @@ const miniChatBot = () => {
         setUserData(prev => [...prev, userPrompt]);
         setInputValue("");
 
-        const API = import.meta.env.VITE_API_URL;
+        const API = import.meta.env.VITE_API_URL || "";
         try {
             const response = await fetch(`${API}/api/getChat`, {
                 method: 'POST',

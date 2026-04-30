@@ -11,7 +11,7 @@ import {
 
 const libraryHub = () =>{
 
-    const API = import.meta.env.VITE_API_URL;
+    const API = import.meta.env.VITE_API_URL || "";
 
     const [libraryItem, setLibraryItems] = useState();
     useEffect(() => {
