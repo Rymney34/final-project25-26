@@ -54,6 +54,7 @@ console.log("API URL:", import.meta.env.VITE_API_URL);
             localStorage.setItem("user", JSON.stringify(data.user));
             localStorage.setItem("token", data.accessToken);
             // localStorage.setItem("refreshToken", data.refreshToken);
+            console.log("LOGIN IS DONE")
             setStatus({ success: "Login successful!" });
             // console.log("Logged in user:", data.user);
             navigate("/home");
