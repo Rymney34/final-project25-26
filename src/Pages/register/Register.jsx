@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 
 
 const API_ENDPOINT = "/api/register"; 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || "";
 
     const Register = () => {
       
