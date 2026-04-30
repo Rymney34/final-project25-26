@@ -1,5 +1,5 @@
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || "";
 let isRefreshing = false;
 let refreshPromise = null;
 
