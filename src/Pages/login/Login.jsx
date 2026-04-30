@@ -12,7 +12,7 @@ import "./Login.css"
 import * as Yup from 'yup';
 const API_ENDPOINT = "/api/login"; 
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL || "";
 
 console.log("API URL:", import.meta.env.VITE_API_URL);
   //to clear error from the validation from db
