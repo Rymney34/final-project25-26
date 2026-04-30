@@ -14,8 +14,8 @@ export default function GoogleStreetView({coords}) {
 
     const position = { lat: parseFloat(latStr.trim()), lng: parseFloat(lngStr.trim()) }
     const containerStyle = {
-        height: "650px",
-        width: "1000px"
+        height: "40%",
+        width: "80%"
     };
     return (
             <div >
