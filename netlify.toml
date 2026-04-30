@@ -3,4 +3,3 @@
   to = "http://production-env.eba-xqpdsyrp.eu-north-1.elasticbeanstalk.com/api/:splat"
   status = 200
   force = true
-  
